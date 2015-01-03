@@ -1,0 +1,15 @@
+C:\Users\Damir\Documents\Gnida3\DBea\bin\Release\DBea.dll
+C:\Users\Damir\Documents\Gnida3\DBea\bin\Release\DBea.pdb
+C:\Users\Damir\Documents\Gnida3\DBea\bin\Release\Bea.dll
+C:\Users\Damir\Documents\Gnida3\DBea\bin\Release\common.dll
+C:\Users\Damir\Documents\Gnida3\DBea\bin\Release\common.pdb
+C:\Users\Damir\Documents\Gnida3\WpfApplication1\Release\Dasmers\DBea.dll
+C:\Users\Damir\Documents\Gnida3\WpfApplication1\Release\Dasmers\DBea.pdb
+C:\Users\Damir\Documents\Gnida3\DBea\obj\Release\DBea.dll
+C:\Users\Damir\Documents\Gnida3\DBea\obj\Release\DBea.pdb
+C:\Users\Damir\Documents\Gnida3\DBea\obj\Release\DBea.csprojResolveAssemblyReference.cache
+D:\Users\Damir\Documents\Gnida3\WpfApplication1\Release\Dasmers\DBea.dll
+D:\Users\Damir\Documents\Gnida3\WpfApplication1\Release\Dasmers\DBea.pdb
+D:\Users\Damir\Documents\Gnida3\DBea\obj\Release\DBea.csprojResolveAssemblyReference.cache
+D:\Users\Damir\Documents\Gnida3\DBea\obj\Release\DBea.dll
+D:\Users\Damir\Documents\Gnida3\DBea\obj\Release\DBea.pdb

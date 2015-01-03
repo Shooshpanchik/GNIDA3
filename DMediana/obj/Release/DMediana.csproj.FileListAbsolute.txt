@@ -1,0 +1,14 @@
+C:\Users\Damir\Documents\Gnida3\DMediana\bin\Release\DMediana.dll
+C:\Users\Damir\Documents\Gnida3\DMediana\bin\Release\DMediana.pdb
+C:\Users\Damir\Documents\Gnida3\DMediana\bin\Release\common.dll
+C:\Users\Damir\Documents\Gnida3\DMediana\bin\Release\common.pdb
+C:\Users\Damir\Documents\Gnida3\WpfApplication1\Release\Dasmers\DMediana.dll
+C:\Users\Damir\Documents\Gnida3\WpfApplication1\Release\Dasmers\DMediana.pdb
+C:\Users\Damir\Documents\Gnida3\DMediana\obj\Release\DMediana.csprojResolveAssemblyReference.cache
+C:\Users\Damir\Documents\Gnida3\DMediana\obj\Release\DMediana.dll
+C:\Users\Damir\Documents\Gnida3\DMediana\obj\Release\DMediana.pdb
+D:\Users\Damir\Documents\Gnida3\WpfApplication1\Release\Dasmers\DMediana.dll
+D:\Users\Damir\Documents\Gnida3\WpfApplication1\Release\Dasmers\DMediana.pdb
+D:\Users\Damir\Documents\Gnida3\DMediana\obj\Release\DMediana.csprojResolveAssemblyReference.cache
+D:\Users\Damir\Documents\Gnida3\DMediana\obj\Release\DMediana.dll
+D:\Users\Damir\Documents\Gnida3\DMediana\obj\Release\DMediana.pdb

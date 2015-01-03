@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D48C4997-0892-4D55-90D3-8B389BADA363}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LoaderWin32</RootNamespace>
+    <AssemblyName>LoaderWin32</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\WpfApplication1\Release\Loaders\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\WpfApplication1\Release\Loaders\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="common">
+      <HintPath>..\WpfApplication1\Release\common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LoaderWin32.cs" />
+    <Compile Include="pl1\ASMGlobals.cs" />
+    <Compile Include="pl1\DataDirectory.cs" />
+    <Compile Include="pl1\DataDirectoryName.cs" />
+    <Compile Include="pl1\ExceptionHandler.cs" />
+    <Compile Include="pl1\ExceptionHandlerType.cs" />
+    <Compile Include="pl1\ExecutableFlags.cs" />
+    <Compile Include="pl1\ExportedType.cs" />
+    <Compile Include="pl1\ExportMethod.cs" />
+    <Compile Include="pl1\FileAttributes.cs" />
+    <Compile Include="pl1\FileHeader.cs" />
+    <Compile Include="pl1\FileReference.cs" />
+    <Compile Include="pl1\IHeader.cs" />
+    <Compile Include="pl1\IImageProvider.cs" />
+    <Compile Include="pl1\ImageSignature.cs" />
+    <Compile Include="pl1\ImportExportTableReader.cs" />
+    <Compile Include="pl1\ImportMethod.cs" />
+    <Compile Include="pl1\IOptionalHeader.cs" />
+    <Compile Include="pl1\IResolutionScope.cs" />
+    <Compile Include="pl1\IStreamProvider.cs" />
+    <Compile Include="pl1\LibraryFlags.cs" />
+    <Compile Include="pl1\LibraryReference.cs" />
+    <Compile Include="pl1\LWin32.cs" />
+    <Compile Include="pl1\Machine.cs" />
+    <Compile Include="pl1\ManifestResource.cs" />
+    <Compile Include="pl1\ManifestResourceAttributes.cs" />
+    <Compile Include="pl1\ModifierType.cs" />
+    <Compile Include="pl1\MZHeader.cs" />
+    <Compile Include="pl1\NETHeaderReader.cs" />
+    <Compile Include="pl1\NET\ArrayDimension.cs" />
+    <Compile Include="pl1\NET\ArrayType.cs" />
+    <Compile Include="pl1\NET\AssemblyAttributes.cs" />
+    <Compile Include="pl1\NET\AssemblyDefinition.cs" />
+    <Compile Include="pl1\NET\AssemblyHashAlgorithm.cs" />
+    <Compile Include="pl1\NET\AssemblyReference.cs" />
+    <Compile Include="pl1\NET\AssemblyResolver.cs" />
+    <Compile Include="pl1\NET\BlobHeap.cs" />
+    <Compile Include="pl1\NET\BlobSignatureReader.cs" />
+    <Compile Include="pl1\NET\ByReferenceType.cs" />
+    <Compile Include="pl1\NET\ClassLayout.cs" />
+    <Compile Include="pl1\NET\Constant.cs" />
+    <Compile Include="pl1\NET\CustomAttribute.cs" />
+    <Compile Include="pl1\NET\CustomAttributeArgument.cs" />
+    <Compile Include="pl1\NET\CustomAttributeSignature.cs" />
+    <Compile Include="pl1\NET\ElementType.cs" />
+    <Compile Include="pl1\NET\EnCLog.cs" />
+    <Compile Include="pl1\NET\EnCMap.cs" />
+    <Compile Include="pl1\NET\EventAttributes.cs" />
+    <Compile Include="pl1\NET\EventDefinition.cs" />
+    <Compile Include="pl1\NET\EventMap.cs" />
+    <Compile Include="pl1\NET\FieldAttributes.cs" />
+    <Compile Include="pl1\NET\FieldDefinition.cs" />
+    <Compile Include="pl1\NET\FieldLayout.cs" />
+    <Compile Include="pl1\NET\FieldMarshal.cs" />
+    <Compile Include="pl1\NET\FieldPtr.cs" />
+    <Compile Include="pl1\NET\FieldReference.cs" />
+    <Compile Include="pl1\NET\FieldRVA.cs" />
+    <Compile Include="pl1\NET\FieldSignature.cs" />
+    <Compile Include="pl1\NET\GenericInstanceType.cs" />
+    <Compile Include="pl1\NET\GenericParamConstraint.cs" />
+    <Compile Include="pl1\NET\GenericParameter.cs" />
+    <Compile Include="pl1\NET\GenericParameterAttributes.cs" />
+    <Compile Include="pl1\NET\GuidHeap.cs" />
+    <Compile Include="pl1\NET\ICacheProvider.cs" />
+    <Compile Include="pl1\NET\IDataDirectoryProvider.cs" />
+    <Compile Include="pl1\NET\IGenericContext.cs" />
+    <Compile Include="pl1\NET\IGenericInstance.cs" />
+    <Compile Include="pl1\NET\IGenericParamProvider.cs" />
+    <Compile Include="pl1\NET\IMemberSignature.cs" />
+    <Compile Include="pl1\NET\IMethod.cs" />
+    <Compile Include="pl1\NET\InterfaceImplementation.cs" />
+    <Compile Include="pl1\NET\ISpecification.cs" />
+    <Compile Include="pl1\NET\MemberCollection.cs" />
+    <Compile Include="pl1\NET\MemberRange.cs" />
+    <Compile Include="pl1\NET\MemberReference.cs" />
+    <Compile Include="pl1\NET\MetaDataHeader.cs" />
+    <Compile Include="pl1\NET\MetaDataMember.cs" />
+    <Compile Include="pl1\NET\MetaDataResolver.cs" />
+    <Compile Include="pl1\NET\MetaDataRow.cs" />
+    <Compile Include="pl1\NET\MetaDataStream.cs" />
+    <Compile Include="pl1\NET\MetaDataTable.cs" />
+    <Compile Include="pl1\NET\MetaDataTableGroup.cs" />
+    <Compile Include="pl1\NET\MetaDataTableType.cs" />
+    <Compile Include="pl1\NET\MetaDataTokenResolver.cs" />
+    <Compile Include="pl1\NET\MethodAttributes.cs" />
+    <Compile Include="pl1\NET\MethodBody.cs" />
+    <Compile Include="pl1\NET\MethodBodySection.cs" />
+    <Compile Include="pl1\NET\MethodCallingConvention.cs" />
+    <Compile Include="pl1\NET\MethodDefinition.cs" />
+    <Compile Include="pl1\NET\MethodImpl.cs" />
+    <Compile Include="pl1\NET\MethodImplAttributes.cs" />
+    <Compile Include="pl1\NET\MethodPtr.cs" />
+    <Compile Include="pl1\NET\MethodReference.cs" />
+    <Compile Include="pl1\NET\MethodSemantics.cs" />
+    <Compile Include="pl1\NET\MethodSemanticsAttributes.cs" />
+    <Compile Include="pl1\NET\MethodSignature.cs" />
+    <Compile Include="pl1\NET\MethodSpecification.cs" />
+    <Compile Include="pl1\NET\ModuleDefinition.cs" />
+    <Compile Include="pl1\NET\ModuleReference.cs" />
+    <Compile Include="pl1\NET\MSILAssembler.cs" />
+    <Compile Include="pl1\NET\MSILCode.cs" />
+    <Compile Include="pl1\NET\MSILDisassembler.cs" />
+    <Compile Include="pl1\NET\MSILInstruction.cs" />
+    <Compile Include="pl1\NET\MSILOpCode.cs" />
+    <Compile Include="pl1\NET\MSILOpCodes.cs" />
+    <Compile Include="pl1\NET\NestedClass.cs" />
+    <Compile Include="pl1\NET\NETGlobals.cs" />
+    <Compile Include="pl1\NET\NETHeader.cs" />
+    <Compile Include="pl1\NET\NETHeaderFlags.cs" />
+    <Compile Include="pl1\NET\NETMethodReader.cs" />
+    <Compile Include="pl1\NET\NETTableReader.cs" />
+    <Compile Include="pl1\NET\ObsoleteAssemblyTables.cs" />
+    <Compile Include="pl1\NET\ParameterAttributes.cs" />
+    <Compile Include="pl1\NET\ParameterDefinition.cs" />
+    <Compile Include="pl1\NET\ParameterReference.cs" />
+    <Compile Include="pl1\NET\ParamPtr.cs" />
+    <Compile Include="pl1\NET\PinnedType.cs" />
+    <Compile Include="pl1\NET\PInvokeImplAttributes.cs" />
+    <Compile Include="pl1\NET\PInvokeImplementation.cs" />
+    <Compile Include="pl1\NET\PointerType.cs" />
+    <Compile Include="pl1\NET\PropertyAttributes.cs" />
+    <Compile Include="pl1\NET\PropertyDefinition.cs" />
+    <Compile Include="pl1\NET\PropertyMap.cs" />
+    <Compile Include="pl1\NET\PropertyPtr.cs" />
+    <Compile Include="pl1\NET\PropertySignature.cs" />
+    <Compile Include="pl1\NET\SecurityDeclaration.cs" />
+    <Compile Include="pl1\NET\StringsHeap.cs" />
+    <Compile Include="pl1\NET\TablesHeap.cs" />
+    <Compile Include="pl1\NET\TypeAttributes.cs" />
+    <Compile Include="pl1\NET\TypeDefinition.cs" />
+    <Compile Include="pl1\NET\TypeReference.cs" />
+    <Compile Include="pl1\NET\TypeSpecification.cs" />
+    <Compile Include="pl1\NET\TypeSystem.cs" />
+    <Compile Include="pl1\NET\UserStringsHeap.cs" />
+    <Compile Include="pl1\NET\VariableDefinition.cs" />
+    <Compile Include="pl1\NTHeader.cs" />
+    <Compile Include="pl1\Offset.cs" />
+    <Compile Include="pl1\OffsetConverter.cs" />
+    <Compile Include="pl1\OperandType.cs" />
+    <Compile Include="pl1\OptionalHeader32.cs" />
+    <Compile Include="pl1\OptionalHeader64.cs" />
+    <Compile Include="pl1\PeHeaderReader.cs" />
+    <Compile Include="pl1\PeImage.cs" />
+    <Compile Include="pl1\ReadingParameters.cs" />
+    <Compile Include="pl1\ResolveException.cs" />
+    <Compile Include="pl1\ResourceDataEntry.cs" />
+    <Compile Include="pl1\ResourceDirectory.cs" />
+    <Compile Include="pl1\ResourceDirectoryEntry.cs" />
+    <Compile Include="pl1\ResourceDirectoryType.cs" />
+    <Compile Include="pl1\ResourcesReader.cs" />
+    <Compile Include="pl1\Section.cs" />
+    <Compile Include="pl1\SectionFlags.cs" />
+    <Compile Include="pl1\StackBehaviour.cs" />
+    <Compile Include="pl1\StandAloneSignature.cs" />
+    <Compile Include="pl1\Structures.cs" />
+    <Compile Include="pl1\SubSystem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

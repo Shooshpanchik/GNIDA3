@@ -1,0 +1,7 @@
+C:\Users\Damir\Documents\Gnida3\WpfControlLibrary1\obj\Release\WpfControlLibrary1.csprojResolveAssemblyReference.cache
+C:\Users\Damir\Documents\Gnida3\WpfControlLibrary1\obj\Release\BindableTextBlock.baml
+C:\Users\Damir\Documents\Gnida3\WpfControlLibrary1\obj\Release\BindableTextBlock.g.cs
+C:\Users\Damir\Documents\Gnida3\WpfControlLibrary1\obj\Release\WpfControlLibrary1_MarkupCompile.cache
+C:\Users\Damir\Documents\Gnida3\WpfControlLibrary1\obj\Release\WpfControlLibrary1.g.resources
+C:\Users\Damir\Documents\Gnida3\WpfControlLibrary1\obj\Release\WpfControlLibrary1.Properties.Resources.resources
+C:\Users\Damir\Documents\Gnida3\WpfControlLibrary1\obj\Release\WpfControlLibrary1.csproj.GenerateResource.Cache

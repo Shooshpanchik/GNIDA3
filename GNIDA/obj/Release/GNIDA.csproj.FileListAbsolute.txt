@@ -1,0 +1,14 @@
+C:\Users\Damir\Documents\Gnida3\GNIDA\bin\Release\GNIDA.dll
+C:\Users\Damir\Documents\Gnida3\GNIDA\bin\Release\GNIDA.pdb
+C:\Users\Damir\Documents\Gnida3\GNIDA\bin\Release\common.dll
+C:\Users\Damir\Documents\Gnida3\GNIDA\bin\Release\common.pdb
+C:\Users\Damir\Documents\Gnida3\WpfApplication1\Release\GNIDA.dll
+C:\Users\Damir\Documents\Gnida3\WpfApplication1\Release\GNIDA.pdb
+C:\Users\Damir\Documents\Gnida3\GNIDA\obj\Release\GNIDA.csprojResolveAssemblyReference.cache
+C:\Users\Damir\Documents\Gnida3\GNIDA\obj\Release\GNIDA.dll
+C:\Users\Damir\Documents\Gnida3\GNIDA\obj\Release\GNIDA.pdb
+D:\Users\Damir\Documents\Gnida3\WpfApplication1\Release\GNIDA.dll
+D:\Users\Damir\Documents\Gnida3\WpfApplication1\Release\GNIDA.pdb
+D:\Users\Damir\Documents\Gnida3\GNIDA\obj\Release\GNIDA.csprojResolveAssemblyReference.cache
+D:\Users\Damir\Documents\Gnida3\GNIDA\obj\Release\GNIDA.dll
+D:\Users\Damir\Documents\Gnida3\GNIDA\obj\Release\GNIDA.pdb
