@@ -106,12 +106,12 @@ namespace WpfApplication1
         {
             BaseDataSet.strRow s = baseDataSet.str.NewstrRow();
             long? adr = baseDataSetproceduresTableAdapter.GetFuncAddr(addr);
-            if (adr == null)
-            {
+            if ((adr == null)|(adr!=0))
+            {                
                 BaseDataSet.proceduresRow rw = baseDataSet.procedures.NewproceduresRow();
                 rw.Addr = addr;
                 s.fid = addr;
-                baseDataSet.procedures.AddproceduresRow(rw);
+                if(baseDataSet.procedures.FindByAddr(addr) == null) baseDataSet.procedures.AddproceduresRow(rw);
             }else s.fid = adr.Value;
 
             s.addr = addr;
@@ -122,15 +122,17 @@ namespace WpfApplication1
             s.Op2 = str.Inst.OpToString(1);
             s.Op3 = str.Inst.OpToString(2);
             s.Op4 = "";
-            baseDataSet.str.AddstrRow(s);
-            baseDataSetstrTableAdapter.Insert(addr, s.bytes, text[0], s.comment,
-                                              s.Op1,
-                                              s.Op2,
-                                              s.Op3,
-                                              s.Op4,
-                                              s.command,s.fid);
-           
+            if (addr != 0)
+            {
+                baseDataSet.str.AddstrRow(s);
+                baseDataSetstrTableAdapter.Insert(addr, s.bytes, text[0], s.comment,
+                                                  s.Op1,
+                                                  s.Op2,
+                                                  s.Op3,
+                                                  s.Op4,
+                                                  s.command, s.fid);
 
+            }
             string c = "c"+baseDataSetproceduresTableAdapter.Find(addr);
             TextBlock blc = this.FindName(c) as TextBlock;
             if (blc == null)

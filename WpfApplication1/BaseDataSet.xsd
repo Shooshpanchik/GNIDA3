@@ -295,7 +295,7 @@ SELECT Id, type, Name, func FROM params WHERE (Id = @Id)</CommandText>
   <xs:element name="BaseDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="BaseDataSet" msprop:Generator_UserDSName="BaseDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="procedures" msprop:Generator_TableClassName="proceduresDataTable" msprop:Generator_TableVarName="tableprocedures" msprop:Generator_TablePropName="procedures" msprop:Generator_RowDeletingName="proceduresRowDeleting" msprop:Generator_RowChangingName="proceduresRowChanging" msprop:Generator_RowEvHandlerName="proceduresRowChangeEventHandler" msprop:Generator_RowDeletedName="proceduresRowDeleted" msprop:Generator_UserTableName="procedures" msprop:Generator_RowChangedName="proceduresRowChanged" msprop:Generator_RowEvArgName="proceduresRowChangeEvent" msprop:Generator_RowClassName="proceduresRow">
+        <xs:element name="procedures" msprop:Generator_TableClassName="proceduresDataTable" msprop:Generator_TableVarName="tableprocedures" msprop:Generator_RowChangedName="proceduresRowChanged" msprop:Generator_TablePropName="procedures" msprop:Generator_RowDeletingName="proceduresRowDeleting" msprop:Generator_RowChangingName="proceduresRowChanging" msprop:Generator_RowEvHandlerName="proceduresRowChangeEventHandler" msprop:Generator_RowDeletedName="proceduresRowDeleted" msprop:Generator_RowClassName="proceduresRow" msprop:Generator_UserTableName="procedures" msprop:Generator_RowEvArgName="proceduresRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Addr" msprop:Generator_ColumnVarNameInTable="columnAddr" msprop:Generator_ColumnPropNameInRow="Addr" msprop:Generator_ColumnPropNameInTable="AddrColumn" msprop:Generator_UserColumnName="Addr" type="xs:long" />
@@ -311,7 +311,7 @@ SELECT Id, type, Name, func FROM params WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="str" msprop:Generator_TableClassName="strDataTable" msprop:Generator_TableVarName="tablestr" msprop:Generator_RowChangedName="strRowChanged" msprop:Generator_TablePropName="str" msprop:Generator_RowDeletingName="strRowDeleting" msprop:Generator_RowChangingName="strRowChanging" msprop:Generator_RowEvHandlerName="strRowChangeEventHandler" msprop:Generator_RowDeletedName="strRowDeleted" msprop:Generator_RowClassName="strRow" msprop:Generator_UserTableName="str" msprop:Generator_RowEvArgName="strRowChangeEvent">
+        <xs:element name="str" msprop:Generator_TableClassName="strDataTable" msprop:Generator_TableVarName="tablestr" msprop:Generator_TablePropName="str" msprop:Generator_RowDeletingName="strRowDeleting" msprop:Generator_RowChangingName="strRowChanging" msprop:Generator_RowEvHandlerName="strRowChangeEventHandler" msprop:Generator_RowDeletedName="strRowDeleted" msprop:Generator_UserTableName="str" msprop:Generator_RowChangedName="strRowChanged" msprop:Generator_RowEvArgName="strRowChangeEvent" msprop:Generator_RowClassName="strRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="addr" msprop:Generator_ColumnVarNameInTable="columnaddr" msprop:Generator_ColumnPropNameInRow="addr" msprop:Generator_ColumnPropNameInTable="addrColumn" msprop:Generator_UserColumnName="addr" type="xs:long" />
@@ -369,7 +369,7 @@ SELECT Id, type, Name, func FROM params WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Variables" msprop:Generator_TableClassName="VariablesDataTable" msprop:Generator_TableVarName="tableVariables" msprop:Generator_RowChangedName="VariablesRowChanged" msprop:Generator_TablePropName="Variables" msprop:Generator_RowDeletingName="VariablesRowDeleting" msprop:Generator_RowChangingName="VariablesRowChanging" msprop:Generator_RowEvHandlerName="VariablesRowChangeEventHandler" msprop:Generator_RowDeletedName="VariablesRowDeleted" msprop:Generator_RowClassName="VariablesRow" msprop:Generator_UserTableName="Variables" msprop:Generator_RowEvArgName="VariablesRowChangeEvent">
+        <xs:element name="Variables" msprop:Generator_TableClassName="VariablesDataTable" msprop:Generator_TableVarName="tableVariables" msprop:Generator_TablePropName="Variables" msprop:Generator_RowDeletingName="VariablesRowDeleting" msprop:Generator_RowChangingName="VariablesRowChanging" msprop:Generator_RowEvHandlerName="VariablesRowChangeEventHandler" msprop:Generator_RowDeletedName="VariablesRowDeleted" msprop:Generator_UserTableName="Variables" msprop:Generator_RowChangedName="VariablesRowChanged" msprop:Generator_RowEvArgName="VariablesRowChangeEvent" msprop:Generator_RowClassName="VariablesRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="addr" msprop:Generator_ColumnVarNameInTable="columnaddr" msprop:Generator_ColumnPropNameInRow="addr" msprop:Generator_ColumnPropNameInTable="addrColumn" msprop:Generator_UserColumnName="addr" type="xs:long" />
@@ -384,7 +384,7 @@ SELECT Id, type, Name, func FROM params WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="params" msprop:Generator_TableClassName="paramsDataTable" msprop:Generator_TableVarName="tableparams" msprop:Generator_TablePropName="_params" msprop:Generator_RowDeletingName="paramsRowDeleting" msprop:Generator_RowChangingName="paramsRowChanging" msprop:Generator_RowEvHandlerName="paramsRowChangeEventHandler" msprop:Generator_RowDeletedName="paramsRowDeleted" msprop:Generator_UserTableName="params" msprop:Generator_RowChangedName="paramsRowChanged" msprop:Generator_RowEvArgName="paramsRowChangeEvent" msprop:Generator_RowClassName="paramsRow">
+        <xs:element name="params" msprop:Generator_TableClassName="paramsDataTable" msprop:Generator_TableVarName="tableparams" msprop:Generator_RowChangedName="paramsRowChanged" msprop:Generator_TablePropName="_params" msprop:Generator_RowDeletingName="paramsRowDeleting" msprop:Generator_RowChangingName="paramsRowChanging" msprop:Generator_RowEvHandlerName="paramsRowChangeEventHandler" msprop:Generator_RowDeletedName="paramsRowDeleted" msprop:Generator_RowClassName="paramsRow" msprop:Generator_UserTableName="params" msprop:Generator_RowEvArgName="paramsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -412,10 +412,6 @@ SELECT Id, type, Name, func FROM params WHERE (Id = @Id)</CommandText>
       <xs:selector xpath=".//mstns:procedures" />
       <xs:field xpath="mstns:Addr" />
     </xs:unique>
-    <xs:unique name="Constraint2">
-      <xs:selector xpath=".//mstns:procedures" />
-      <xs:field xpath="mstns:end" />
-    </xs:unique>
     <xs:unique name="str_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:str" />
       <xs:field xpath="mstns:addr" />
@@ -431,8 +427,8 @@ SELECT Id, type, Name, func FROM params WHERE (Id = @Id)</CommandText>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_str_procedures" msdata:parent="str" msdata:child="procedures" msdata:parentkey="fid" msdata:childkey="Addr" msprop:Generator_UserChildTable="procedures" msprop:Generator_ChildPropName="GetproceduresRows" msprop:Generator_UserRelationName="FK_str_procedures" msprop:Generator_RelationVarName="relationFK_str_procedures" msprop:Generator_UserParentTable="str" msprop:Generator_ParentPropName="strRow" />
-      <msdata:Relationship name="procedures_params" msdata:parent="procedures" msdata:child="params" msdata:parentkey="Addr" msdata:childkey="func" msprop:Generator_UserChildTable="params" msprop:Generator_ChildPropName="GetparamsRows" msprop:Generator_UserRelationName="procedures_params" msprop:Generator_RelationVarName="relationprocedures_params" msprop:Generator_UserParentTable="procedures" msprop:Generator_ParentPropName="proceduresRow" />
+      <msdata:Relationship name="FK_str_procedures" msdata:parent="str" msdata:child="procedures" msdata:parentkey="fid" msdata:childkey="Addr" msprop:Generator_UserChildTable="procedures" msprop:Generator_ChildPropName="GetproceduresRows" msprop:Generator_UserRelationName="FK_str_procedures" msprop:Generator_ParentPropName="strRow" msprop:Generator_RelationVarName="relationFK_str_procedures" msprop:Generator_UserParentTable="str" />
+      <msdata:Relationship name="procedures_params" msdata:parent="procedures" msdata:child="params" msdata:parentkey="Addr" msdata:childkey="func" msprop:Generator_UserChildTable="params" msprop:Generator_ChildPropName="GetparamsRows" msprop:Generator_UserRelationName="procedures_params" msprop:Generator_ParentPropName="proceduresRow" msprop:Generator_RelationVarName="relationprocedures_params" msprop:Generator_UserParentTable="procedures" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
