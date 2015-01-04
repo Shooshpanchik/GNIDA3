@@ -10,3 +10,8 @@ D:\Users\Damir\Documents\Gnida3\WpfApplication1\Release\Loaders\LoaderWin32.pdb
 D:\Users\Damir\Documents\Gnida3\LoaderWin32\obj\Release\LoaderWin32.csprojResolveAssemblyReference.cache
 D:\Users\Damir\Documents\Gnida3\LoaderWin32\obj\Release\LoaderWin32.dll
 D:\Users\Damir\Documents\Gnida3\LoaderWin32\obj\Release\LoaderWin32.pdb
+D:\Users\Damir\Source\Repos\GNIDA3\WpfApplication1\Release\Loaders\LoaderWin32.dll
+D:\Users\Damir\Source\Repos\GNIDA3\WpfApplication1\Release\Loaders\LoaderWin32.pdb
+D:\Users\Damir\Source\Repos\GNIDA3\LoaderWin32\obj\Release\LoaderWin32.csprojResolveAssemblyReference.cache
+D:\Users\Damir\Source\Repos\GNIDA3\LoaderWin32\obj\Release\LoaderWin32.dll
+D:\Users\Damir\Source\Repos\GNIDA3\LoaderWin32\obj\Release\LoaderWin32.pdb

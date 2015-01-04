@@ -109,8 +109,9 @@ namespace GNIDA
                     case Capstone.X86.INSN.JNP:
                     //case Capstone.X86.INSN.JMPQ:
                     //case Capstone.X86.INSN.LJMP:
+                        if (instr1.ops[0].value.imm.imm64 == 0) instr1.ops[0].value.imm.imm64 = instr1.disp.value.d64;
                         instr1.insn.Operands = "Loc_" + instr1.ops[0].value.imm.imm64.ToString("X8");
-                            AddLabel(instr1.ops[0].value.imm.imm64);
+                        AddLabel(instr1.ops[0].value.imm.imm64);
                             instr1.Addr = FO2RVA(instr1.Addr);
                         continue;// Don't disasm after it
 

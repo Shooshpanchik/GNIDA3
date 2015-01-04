@@ -7,8 +7,8 @@ C:\Users\Damir\Documents\Gnida3\WpfApplication1\Release\GNIDA.pdb
 C:\Users\Damir\Documents\Gnida3\GNIDA\obj\Debug\GNIDA.csprojResolveAssemblyReference.cache
 C:\Users\Damir\Documents\Gnida3\GNIDA\obj\Debug\GNIDA.dll
 C:\Users\Damir\Documents\Gnida3\GNIDA\obj\Debug\GNIDA.pdb
-D:\Users\Damir\Source\Repos\GNIDA3\WpfApplication1\Release\GNIDA.dll
-D:\Users\Damir\Source\Repos\GNIDA3\WpfApplication1\Release\GNIDA.pdb
 D:\Users\Damir\Source\Repos\GNIDA3\GNIDA\obj\Debug\GNIDA.csprojResolveAssemblyReference.cache
 D:\Users\Damir\Source\Repos\GNIDA3\GNIDA\obj\Debug\GNIDA.dll
 D:\Users\Damir\Source\Repos\GNIDA3\GNIDA\obj\Debug\GNIDA.pdb
+D:\Users\Damir\Source\Repos\GNIDA3\GNIDA.dll
+D:\Users\Damir\Source\Repos\GNIDA3\GNIDA.pdb

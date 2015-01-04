@@ -46,3 +46,6 @@ D:\Users\Damir\Source\Repos\GNIDA3\WpfApplication1\obj\Debug\WpfApplication1.g.r
 D:\Users\Damir\Source\Repos\GNIDA3\WpfApplication1\obj\Debug\WpfApplication1.AboutBox1.resources
 D:\Users\Damir\Source\Repos\GNIDA3\WpfApplication1\obj\Debug\WpfApplication1.Properties.Resources.resources
 D:\Users\Damir\Source\Repos\GNIDA3\WpfApplication1\obj\Debug\WIDE.csproj.GenerateResource.Cache
+D:\Users\Damir\Source\Repos\GNIDA3\WpfApplication1\Release\Be.Windows.Forms.HexBox.dll
+D:\Users\Damir\Source\Repos\GNIDA3\WpfApplication1\Release\common.dll
+D:\Users\Damir\Source\Repos\GNIDA3\WpfApplication1\Release\GNIDA.dll
