@@ -62,7 +62,8 @@
             </TabItem>
             <TabItem Header="Variables">
                 <Grid Background="#FFE5E5E5">
-                    <ListBox Margin="0,0,-0.4,-0.4" DisplayMemberPath="name" DataContext="{DynamicResource variablesViewSource}" ItemsSource="{Binding Mode=OneWay, Source={StaticResource variablesViewSource}}"/>
+                    <ListBox x:Name="vbls" Margin="0,0,-0.4,-0.4" DisplayMemberPath="name" DataContext="{DynamicResource variablesViewSource}">
+                    </ListBox>
                 </Grid>
             </TabItem>
         </TabControl>
@@ -104,13 +105,25 @@
                                 <LineBreak/>
                                 <Run Text="#include &quot;msvcrt.h--&quot;;"/>
                             </Paragraph>
+                            <Paragraph x:Name="blk_variables1">
+                                <Run Text=":dword 123"/>
+                            </Paragraph>
                             <Paragraph x:Name="Code1"/>
                         </FlowDocument>
                     </RichTextBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Hex-View" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
-                <Grid Background="#FFE5E5E5" Margin="0" DataContext="{StaticResource strViewSource}" TextBlock.FontFamily="Lucida Console"/>
+                <Grid Background="#FFE5E5E5" Margin="0" DataContext="{StaticResource strViewSource}" TextBlock.FontFamily="Lucida Console">
+                    <DataGrid x:Name="proceduresDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource proceduresViewSource}}" Margin="0,0,-22,43" RowDetailsVisibilityMode="VisibleWhenSelected">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="addrColumn" Binding="{Binding Addr}" Header="Addr" Width="SizeToHeader"/>
+                            <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
+                            <DataGridTextColumn x:Name="typeColumn" Binding="{Binding type}" Header="type" Width="SizeToHeader"/>
+                            <DataGridTextColumn x:Name="endColumn" Binding="{Binding end}" Header="end" Width="SizeToHeader"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
             </TabItem>
             <TabItem Header="TabItem" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="58" Margin="-3.2,0,0,0">
                 <Grid Background="#FFE5E5E5" DataContext="{StaticResource variablesViewSource}"/>

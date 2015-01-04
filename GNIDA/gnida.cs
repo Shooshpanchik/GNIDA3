@@ -22,6 +22,7 @@ namespace GNIDA
         public MyDictionary DisasmedFuncList() { return _DisasmedFuncList; }
         public VarDictionary VarDict() { return _VarDict; }
         public VarDictionary _VarDict = new VarDictionary();
+        VarDictionary NewVars = new VarDictionary();
         public Flirt flirt;
         MyDictionary NewSubs = new MyDictionary();
         public GNIDA1(string FlirtCfg)
@@ -49,7 +50,12 @@ namespace GNIDA
                 LabelList.Add(addr);
             }
         }
-
+        private void AddVar(ulong addr, string nm="", uint tip=0, string vl="")
+        {
+            if (_VarDict.ContainsKey(addr)) return;
+            TVar tmp = new TVar(addr, nm, tip, vl);
+            if (NewVars != null) if (!NewVars.ContainsKey(addr)) NewVars.Add(addr, tmp);
+        }
         private static void AddProc(ulong x, MyDictionary ProcList, Dictionary<ulong, TFunc> NewSubs)
         {
             if (ProcList.ContainsKey(x)) return;
@@ -67,6 +73,7 @@ namespace GNIDA
             DISASM_INOUT_PARAMS param = new DISASM_INOUT_PARAMS();
             uint Len = 0;
             byte[] sf_prefixes = new byte[Dasmer.MAX_INSTRUCTION_LEN];
+            byte[] smp = new byte[4];
             param.arch = Dasmer.ARCH_ALL;
             param.sf_prefixes = sf_prefixes;
             param.mode = DISMODE.DISASSEMBLE_MODE_32;
@@ -78,12 +85,26 @@ namespace GNIDA
             {
                 param.bas = FO2RVA(Tasks[0]);
                 Len = MeDisasm.disassemble(Tasks[0], out instr1, ref param);
+                instr1.insn.Mnemonic = "$" + instr1.insn.Mnemonic;
                 if (EndAddr < (Tasks[0] + Len)) EndAddr = Tasks[0] + Len;
                 DTasks.Add(Tasks[0]);
                 Tasks.Remove(Tasks[0]);
                 lst.Add(new Stroka(this, instr1));
                 switch(instr1.ins)
                 {
+                    case Capstone.X86.INSN.MOVBE:                        
+                        ulong b = 0;
+                        for (int x = 0; x < instr1.OpCount; x++)
+                        {
+                            if (instr1.ops[x].flags == Capstone.X86.OP.MEM)
+                                { 
+                                    b = (ulong)instr1.ops[x].value.imm.imm64;
+                                    AddVar(b, "dword_" + b.ToString("X8"), 4);
+                                    instr1.insn.Operands = "dword_" + b.ToString("X8") + ", eax";//SIB
+                                };
+                        }
+                        //instr1.insn.Operands = "dword_" + b.ToString("X8") +", eax";//SIB
+                        break;
                     case Capstone.X86.INSN.JA:
                     case Capstone.X86.INSN.JAE:
                     case Capstone.X86.INSN.JB:
@@ -103,6 +124,7 @@ namespace GNIDA
                     case Capstone.X86.INSN.JP:
                     case Capstone.X86.INSN.JRCXZ:
                     case Capstone.X86.INSN.JS:
+                        if (instr1.ops[0].value.imm.imm64 == 0) instr1.ops[0].value.imm.imm64 = instr1.disp.value.d64;
                         instr1.insn.Operands = "Loc_" + instr1.ops[0].value.imm.imm64.ToString("X8");
                         AddLabel(instr1.ops[0].value.imm.imm64); 
                         break;
@@ -110,8 +132,12 @@ namespace GNIDA
                     //case Capstone.X86.INSN.JMPQ:
                     //case Capstone.X86.INSN.LJMP:
                         if (instr1.ops[0].value.imm.imm64 == 0) instr1.ops[0].value.imm.imm64 = instr1.disp.value.d64;
-                        instr1.insn.Operands = "Loc_" + instr1.ops[0].value.imm.imm64.ToString("X8");
-                        AddLabel(instr1.ops[0].value.imm.imm64);
+                        if (ProcList.ContainsKey(instr1.ops[0].value.imm.imm64)) instr1.insn.Operands = ProcList[instr1.ops[0].value.imm.imm64].FName;
+                        else
+                        {
+                            instr1.insn.Operands = "Loc_" + instr1.ops[0].value.imm.imm64.ToString("X8");
+                            AddLabel(instr1.ops[0].value.imm.imm64);
+                        }
                             instr1.Addr = FO2RVA(instr1.Addr);
                         continue;// Don't disasm after it
 
@@ -124,12 +150,23 @@ namespace GNIDA
                             case Capstone.X86.OP.MEM: a = (ulong)instr1.dt.Operands[0].Value.Mem.Disp; break;
                         }
                         if (a == 0) break;
+                        if (instr1.dt.Operands[0].Type == Capstone.X86.OP.MEM)
+                            if (!ProcList.ContainsKey(a))
+                            {
+                                smp = assembly.ReadBytes(RVA2FO(a), 4);
+                                ulong a1 = (ulong)((smp[3] << 24) + (smp[2] << 16) + (smp[1] << 8) + smp[0]);
+                                AddVar(a, "dword_" + a.ToString("X8"), 4, "#proc_" + a1.ToString("X8"));
+                                instr1.insn.Operands = "dword_" + a.ToString("X8");
+                                AddProc(a1, ProcList, NewSubs);
+                                break;
+                            };
                         AddProc(a, ProcList, NewSubs);
                         if (ProcList.ContainsKey(a))
                         {
                             instr1.insn.Operands = ProcList[a].FName;
                             if (ProcList[a].FName.Contains("ExitProcess")) continue;
-                        }else instr1.insn.Operands = "proc_" + a.ToString("X8");
+                        }
+                        else instr1.insn.Operands = "proc_" + a.ToString("X8");
                         break;
 
                     case Capstone.X86.INSN.RET:
@@ -218,9 +255,15 @@ namespace GNIDA
         private TFunc ffnc;
         void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-                foreach (KeyValuePair<ulong, TFunc> dct1 in NewSubs) FullProcList().AddFunc(dct1.Value);
+            foreach (KeyValuePair<ulong, TFunc> dct1 in NewSubs) FullProcList().AddFunc(dct1.Value);
                 //ApplyFlirt(ffnc);
                 RaiseFuncDmed(this, ffnc);
+                foreach (KeyValuePair<ulong, TVar> tv in NewVars)
+                {
+                    _VarDict.Add(tv.Key, tv.Value);
+                    RaiseVarFuncEvent(this, tv.Value);
+                }
+                NewVars.Clear();
                 foreach (Stroka t in tmp) RaiseAddStrEvent(t.addr, t, t.ToCmmString(NewSubs));
                 if (NewSubs.Count > 0)
                 {

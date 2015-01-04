@@ -908,7 +908,7 @@ SELECT Addr, Name, type, [end] FROM procedures WHERE (Addr = @Addr)";
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
             this._commandCollection[2].CommandText = "SELECT        COUNT(*) AS Expr1\r\nFROM            procedures\r\nWHERE        (Addr <" +
-                " @Param1) AND ([end] > @Param1)";
+                "= @Param1) AND ([end] > @Param1)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Param1", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "Addr", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

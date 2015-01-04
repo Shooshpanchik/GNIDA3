@@ -301,6 +301,7 @@ namespace plugins
         public ulong Addr;
         public string FName;
         public uint type;
+        public string val;
         public string ToStr()
         {
             switch (type)
@@ -312,10 +313,11 @@ namespace plugins
                 default: return "void " + FName;
             }
         }
-        public TVar(ulong addr, string Name = "", uint Type = 0)
+        public TVar(ulong addr, string Name = "", uint Type = 0, string vl="")
         {
             Addr = addr;
             type = Type;
+            val = vl;
             if (Name != "") FName = Name;
             else
                 switch (Type)
@@ -423,7 +425,7 @@ namespace plugins
     public struct value1
     {
         [FieldOffset(0)]
-        public reg1 reg;
+        public REG reg;
         [FieldOffset(0)]
         public imm1 imm;
         [FieldOffset(0)]
@@ -436,7 +438,7 @@ namespace plugins
     {
         public value1 value;
         public ushort size; //Fuck... I need 16_t only for 'stx' size qualifier.
-        public byte flags;
+        public OP flags;
     };
 
     public abstract class IInstruction
@@ -451,6 +453,7 @@ namespace plugins
         public string mnemonic { get; set; }
         public OPERAND[] ops;//OPERAND[3];
         public DISPLACEMENT disp;
+        public int OpCount;
     }
     public interface IPlugin
     {

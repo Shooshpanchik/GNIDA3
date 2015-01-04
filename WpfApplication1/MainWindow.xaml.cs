@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 using GNIDA;
 using plugins;
 using System.Data;
@@ -27,7 +28,6 @@ namespace WpfApplication1
     public partial class MainWindow : Window
     {
         GNIDA1 MyGNIDA;
-        Paragraph blk_variables;
         public MainWindow()
         {
             InitializeComponent();
@@ -91,8 +91,9 @@ namespace WpfApplication1
             {                
                 BaseDataSet.proceduresRow rw = baseDataSet.procedures.NewproceduresRow();
                 rw.Addr = addr;
+                rw.Name = "Proc_" + addr.ToString("X8");
                 if(baseDataSet.procedures.FindByAddr(addr) == null) baseDataSet.procedures.AddproceduresRow(rw);
-                c = "c" + baseDataSetproceduresTableAdapter.GetFuncAddr(addr) as string;
+                c = "c" + rw.Name;
             };
             Paragraph blc = this.FindName(c) as Paragraph;
             if (blc == null)
@@ -100,6 +101,12 @@ namespace WpfApplication1
                 blc = new Paragraph();
                 blc.Name = c;
                 NameScope.GetNameScope(this).RegisterName(c, blc);
+
+                blc.Inlines.Add(new Run("void " + c + "(void){"));
+                blc.Inlines.Add(new LineBreak());
+                //            blc.Inlines.Add(new LineBreak());
+                blc.Inlines.Add(new Run("}"));
+                Code.Document.Blocks.Add(blc);
             }
             if (str.Label != "")
             {
@@ -130,11 +137,12 @@ namespace WpfApplication1
                         }
                         string c1 = baseDataSetproceduresTableAdapter.ScalarQuery(a) as string;
                         if (c1 == null) c1 = str.Inst.insn.Operands;
+                        if (c1 == "esi") c1 = "$call esi;";
+                        else c1=c1+"();";
                         Run fnc = new Run(c1);
                         fnc.Foreground = Brushes.DarkCyan;
                         fnc.ContextMenu = mnu;
                         blc.Inlines.InsertBefore(blc.Inlines.LastInline, fnc);
-                        blc.Inlines.InsertBefore(blc.Inlines.LastInline, new Run("();"));
                     }
                 else
                 blc.Inlines.InsertBefore(blc.Inlines.LastInline, new Run(str.Inst.ToString()));
@@ -144,12 +152,16 @@ namespace WpfApplication1
 
         private void AddVarEvent1(object sender, TVar Var)
         {
-            blk_variables.Inlines.Add("dword ");
-            Run fnc = new Run(Var.FName);
-            fnc.Foreground = Brushes.DarkCyan;
+            ListBoxItem tt = new ListBoxItem();
+            tt.Content = Var.FName;
+            vbls.Items.Add(tt);
+            Run fnc = new Run(Var.ToStr());
+            fnc.Foreground = Brushes.Red;
             fnc.ContextMenu = mnu;
-            blk_variables.Inlines.Add(fnc);
-            blk_variables.Inlines.Add(";");
+            blk_variables1.Inlines.Add(fnc);
+            if (Var.val != "") blk_variables1.Inlines.Add("="+Var.val);
+            blk_variables1.Inlines.Add(";");
+            blk_variables1.Inlines.Add(new LineBreak());
             //blk_variables.AppendText(new LineBreak());
         }
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -168,8 +180,11 @@ namespace WpfApplication1
                 MyGNIDA.OnVarEvent += AddVarEvent1;
                 //MyGNIDA.OnFuncChanged += OnFuncChanged1;
 
+                while (Code.Document.Blocks.Count > 4) Code.Document.Blocks.Remove(Code.Document.Blocks.LastBlock);
+                blk_variables1.Inlines.Clear();
                 Code1.Inlines.Clear();
                 baseDataSet.procedures.Clear();
+                baseDataSetproceduresTableAdapter.Fill(baseDataSet.procedures);
 //                c = "c" + baseDataSetproceduresTableAdapter.GetFuncAddr(addr) as string;
 
                 Window1 wd = new Window1(dlg.FileName);
@@ -227,11 +242,21 @@ namespace WpfApplication1
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
+            FileStream docStream = new FileStream("cmm\\tmp.cmm", FileMode.Create);
+            TextRange tr = new TextRange(Code.Document.ContentStart, Code.Document.ContentEnd);
+            tr.Save(docStream, DataFormats.Text);
+            docStream.Close();
             System.Diagnostics.Process MyProc = new System.Diagnostics.Process();
-            MyProc.StartInfo.FileName = Application.Current.StartupUri + @"cmm\\cmm.exe";
-            MyProc.StartInfo.Arguments = "123.cmm";
+            MyProc.StartInfo.FileName = "cmm\\c--.exe";
+            MyProc.StartInfo.Arguments = "cmm\\tmp.cmm";
+            MyProc.StartInfo.UseShellExecute = false;
+            MyProc.StartInfo.RedirectStandardOutput = true;
             MyProc.Start();
-            Log.Items.Add(new Run("OK"));
+            do
+            {
+                Log.Items.Add(MyProc.StandardOutput.ReadLine());
+            } while (!MyProc.StandardOutput.EndOfStream);
+            MyProc.WaitForExit();
         }
 
         private void Code_ContextMenuOpening(object sender, ContextMenuEventArgs e)

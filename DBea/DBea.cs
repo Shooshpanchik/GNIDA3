@@ -54,12 +54,19 @@ namespace DBea
                 //instr.bytes = new byte[insns[0].Size];
                 instr.bytes = assembly.ReadBytes(offset, insns[0].Size);
                 instr.dt = (Capstone.X86.CsX86)insns[0].Arch;
+                instr.OpCount=instr.dt.Operands.Count();
                 instr.ins = (Capstone.X86.INSN)instr.insn.Id;
-
                 if (instr.dt.Operands.Count() > 0)
-                    instr.ops[0].value.imm.imm64 = (ulong)instr.dt.Operands[0].Value.Imm;
-                if (instr.dt.Operands.Count() > 1)
-                    instr.ops[1].value.imm.imm64 = (ulong)instr.dt.Operands[1].Value.Imm;
+                    for (int x = 0; x < instr.OpCount; x++)
+                    {
+                        instr.ops[x].flags = instr.dt.Operands[x].Type;
+                        switch (instr.dt.Operands[x].Type)
+                        {
+                            case OP.IMM: instr.ops[x].value.imm.imm64 = (ulong)instr.dt.Operands[0].Value.Imm; break;
+                            case OP.MEM: instr.ops[x].value.imm.imm64 = (ulong)instr.dt.Operands[0].Value.Mem.Disp; break;
+                            case OP.REG: instr.ops[x].value.reg = instr.dt.Operands[0].Value.Reg; break;
+                        }
+                    }
                 instr.disp.value.d64 = (ulong)instr.dt.Disp;
                 instr1 = instr;
                 return insns[0].Size;

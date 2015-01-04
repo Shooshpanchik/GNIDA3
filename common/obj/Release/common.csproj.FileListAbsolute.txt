@@ -10,6 +10,5 @@ D:\Users\Damir\Documents\Gnida3\common\obj\Release\common.dll
 D:\Users\Damir\Documents\Gnida3\common\obj\Release\common.pdb
 D:\Users\Damir\Source\Repos\GNIDA3\common\obj\Release\common.dll
 D:\Users\Damir\Source\Repos\GNIDA3\common\obj\Release\common.pdb
-D:\Users\Damir\Source\Repos\GNIDA3\common\obj\Release\common.csprojResolveAssemblyReference.cache
 D:\Users\Damir\Source\Repos\GNIDA3\common.dll
 D:\Users\Damir\Source\Repos\GNIDA3\common.pdb
