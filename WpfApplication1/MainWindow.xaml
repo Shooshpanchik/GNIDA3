@@ -15,7 +15,12 @@
         <CollectionViewSource x:Key="paramsViewSource" Source="{Binding _params, Source={StaticResource baseDataSet}}"/>
     </Window.Resources>
     <Grid>
-        <StatusBar Margin="0,0,0.4,-0.4" Height="22" VerticalAlignment="Bottom"/>
+        <StatusBar Margin="0,0,0.4,-0.4" Height="22" VerticalAlignment="Bottom">
+            <StatusBarItem Content="StatusBarItem" Height="22" VerticalAlignment="Top"/>
+            <StatusBarItem Content="StatusBarItem" Height="22" VerticalAlignment="Top"/>
+            <StatusBarItem x:Name="CurPos" Content="x, y" Height="22" VerticalAlignment="Top"/>
+            <StatusBarItem Content="StatusBarItem" Height="22" VerticalAlignment="Top"/>
+        </StatusBar>
         <Menu Margin="0,0,0.4,295.4" VerticalAlignment="Top">
             <MenuItem Header="File">
                 <MenuItem Header="Open" Click="Button_Click"/>
@@ -78,7 +83,7 @@
                     <DockPanel Margin="0" VerticalAlignment="Top" LastChildFill="False" Height="19" Grid.ColumnSpan="3" Width="378" HorizontalAlignment="Left">
                         <CheckBox Content="Adress" Height="19" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </DockPanel>
-                    <RichTextBox x:Name="Code" HorizontalAlignment="Left" BorderThickness="1,0,1,1" FontFamily="Lucida Console" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="3" Margin="0,24,0,0" ContextMenuOpening="Code_ContextMenuOpening" IsDocumentEnabled="True">
+                    <RichTextBox x:Name="Code" HorizontalAlignment="Left" BorderThickness="1,0,1,1" FontFamily="Lucida Console" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="3" Margin="0,24,0,0" ContextMenuOpening="Code_ContextMenuOpening" IsDocumentEnabled="True" SelectionChanged="Code_SelectionChanged">
                         <FlowDocument PageWidth="10000">
                             <Paragraph x:Name="CopyRight">
                                 <Run Text="//+---------------------------------------------------------------------+"/>

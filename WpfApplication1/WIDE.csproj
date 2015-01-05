@@ -181,6 +181,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Base.mdf</DependentUpon>
     </Content>
+    <Resource Include="Images\gnd31.jpg" />
     <Resource Include="Images\140px-Glider.svg.png" />
     <Resource Include="Images\back.jpg" />
     <Resource Include="Images\favicon.ico" />

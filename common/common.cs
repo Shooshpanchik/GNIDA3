@@ -434,11 +434,23 @@ namespace plugins
         public addr1 addr;
     }
 
+    public delegate string AddVr(ulong addr, string nm="", uint tip=0, string vl="");
+
     public struct OPERAND
     {
         public value1 value;
-        public ushort size; //Fuck... I need 16_t only for 'stx' size qualifier.
+        //public ushort size; //Fuck... I need 16_t only for 'stx' size qualifier.
         public OP flags;
+        public string ToString(AddVr AddVarProc)
+        {
+            switch(flags)
+            {
+                case OP.REG: return value.reg.ToString();
+                case OP.IMM: return "0x" + value.imm.imm64.ToString("X8");
+                case OP.MEM: return AddVarProc(value.imm.imm64, "", 4);
+            }
+            return base.ToString();
+        }
     };
 
     public abstract class IInstruction

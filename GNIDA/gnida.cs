@@ -50,11 +50,12 @@ namespace GNIDA
                 LabelList.Add(addr);
             }
         }
-        private void AddVar(ulong addr, string nm="", uint tip=0, string vl="")
+        private string AddVar(ulong addr, string nm="", uint tip=0, string vl="")
         {
-            if (_VarDict.ContainsKey(addr)) return;
+            if (_VarDict.ContainsKey(addr)) return _VarDict[addr].FName;
             TVar tmp = new TVar(addr, nm, tip, vl);
             if (NewVars != null) if (!NewVars.ContainsKey(addr)) NewVars.Add(addr, tmp);
+            return tmp.FName;
         }
         private static void AddProc(ulong x, MyDictionary ProcList, Dictionary<ulong, TFunc> NewSubs)
         {
@@ -92,19 +93,26 @@ namespace GNIDA
                 lst.Add(new Stroka(this, instr1));
                 switch(instr1.ins)
                 {
-                    case Capstone.X86.INSN.MOVBE:                        
-                        ulong b = 0;
-                        for (int x = 0; x < instr1.OpCount; x++)
-                        {
-                            if (instr1.ops[x].flags == Capstone.X86.OP.MEM)
-                                { 
-                                    b = (ulong)instr1.ops[x].value.imm.imm64;
-                                    AddVar(b, "dword_" + b.ToString("X8"), 4);
-                                    instr1.insn.Mnemonic = "";
-                                    instr1.insn.Operands = "dword_" + b.ToString("X8") + " = EAX;";//SIB
-                                };
-                        }
-                        //instr1.insn.Operands = "dword_" + b.ToString("X8") +", eax";//SIB
+                    case Capstone.X86.INSN.CMOVS:
+                        instr1.insn.Mnemonic = "$cmp";
+                        instr1.insn.Operands = instr1.ops[0].ToString(AddVar) + ", " + instr1.ops[1].ToString(AddVar) + ";";
+                        break;
+                    case Capstone.X86.INSN.AND:
+                        instr1.insn.Mnemonic = "";
+                        instr1.insn.Operands = instr1.ops[0].ToString(AddVar) + " &= " + instr1.ops[1].ToString(AddVar) + ";";
+                        break;
+                    case Capstone.X86.INSN.ADD:
+                        instr1.insn.Mnemonic = "";
+                        instr1.insn.Operands = instr1.ops[0].ToString(AddVar) + " += " + instr1.ops[1].ToString(AddVar) + ";";
+                        break;
+                    case Capstone.X86.INSN.INT:
+                            instr1.insn.Mnemonic = "";
+                            instr1.insn.Operands = instr1.ops[0].ToString(AddVar) + "++;";
+                        break;
+                    case Capstone.X86.INSN.MOVBE:
+                        instr1.insn.Mnemonic = "";
+                        if (instr1.OpCount == 2) instr1.insn.Operands = instr1.ops[0].ToString(AddVar) + " = " + instr1.ops[1].ToString(AddVar) + ";";//SIB
+                            else instr1.insn.Operands = instr1.ops[0].ToString(AddVar) + " = EAX;";
                         break;
                     case Capstone.X86.INSN.JA:
                     case Capstone.X86.INSN.JAE:

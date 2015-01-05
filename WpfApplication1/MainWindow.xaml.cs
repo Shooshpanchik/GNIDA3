@@ -264,5 +264,13 @@ namespace WpfApplication1
             
         }
 
+        private void Code_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+            CurPos.Content = "X:" + Code.CaretPosition.GetLineStartPosition(0).GetOffsetToPosition(Code.Selection.Start).ToString() + " Y:"
+                                 + Code.Selection.Start.GetOffsetToPosition(Code.Selection.Start).ToString();
+                            
+        }
+
     }
 }
