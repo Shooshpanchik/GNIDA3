@@ -56,7 +56,7 @@
         <TabControl Margin="0,59,0,97.6" HorizontalAlignment="Left" Width="124">
             <TabItem Header="Functions">
                 <Grid Background="#FFE5E5E5">
-                    <ListBox x:Name="lb" Margin="0" ItemsSource="{Binding Mode=OneWay}" DisplayMemberPath="Name" DataContext="{Binding Mode=OneWay, Source={StaticResource proceduresViewSource}}">
+                    <ListBox x:Name="lb" Margin="0" ItemsSource="{Binding Mode=OneWay}" DisplayMemberPath="Name" DataContext="{Binding Mode=OneWay, Source={StaticResource proceduresViewSource}}" MouseDoubleClick="lb_MouseDoubleClick">
                         <ListBox.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="Rename"/>

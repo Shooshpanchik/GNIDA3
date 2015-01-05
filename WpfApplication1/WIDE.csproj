@@ -53,9 +53,6 @@
     <ApplicationIcon>Images\favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Be.Windows.Forms.HexBox">
-      <HintPath>..\Be.Windows.Forms.HexBox.dll</HintPath>
-    </Reference>
     <Reference Include="capstone, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Release\capstone.dll</HintPath>

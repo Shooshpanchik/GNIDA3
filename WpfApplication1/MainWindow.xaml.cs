@@ -285,5 +285,13 @@ namespace WpfApplication1
                             
         }
 
+        private void lb_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            string sd = "c"+((lb.SelectedItem as DataRowView).Row.ItemArray[1].ToString());
+            object ttt = this.FindName(sd);
+            Paragraph blc = this.FindName(sd) as Paragraph;
+            if (blc != null) blc.BringIntoView();           
+        }
+
     }
 }
