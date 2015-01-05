@@ -33,9 +33,9 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="capstone">
-      <HintPath>..\WpfApplication1\Release\Dasmers\capstone.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="capstone, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\capstone.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

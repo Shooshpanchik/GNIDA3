@@ -1,0 +1,118 @@
+v0.239
+ - Предупреждения могут выводится как ошибки.
+
+ - Возможность выбора регистра для вычисления индекса.
+ - Изменено расположение локальных переменных в стеке.
+ - Сделан более строгий контроль за типом возврата и типом вызова функций.
+ - Для стековых функций сделано автоматическое объявление при их определении.
+ - Информация по использованию локальных переменных выводится в map-файл.
+ - Добавлен новый метод оптимизации - замена переменной на константу.
+ - Добавлена поддержка директив: #if, #elif, #pragma pack.
+ - Добавлена передача структур в качестве параметра функции.
+ - Добавлен ключ поддержки поэлементной адресации массива ( /ba- ).
+ - Расширены возможности 'uses'.
+ - Добавлена поддержка static переменных в структурах.
+ - Введена поддержка ассемблерных инструкций Пентиум 4 (SSE2, SSE3).
+ - Введена поддержка типов пременных double и st.
+ - Введена поддержка 64-битных переменных.
+ - Расширены возможности операций сравнения флагов.
+ - Очистка стека от параметров cdecl-функций производится не сразу.
+ - Введена поддержка COFF формата объектных файлов.
+ - К проекту можно подключать объектные файлы формата COFF.
+ - Введена поддержка строк в формате unicode.
+ - Изменена работа директив: #define #undef #ifdef/ifndef #inline.
+ - Расширены возможности sizeof.
+ - Расширен синтаксис локальных меток.
+ - Для функций введено ключевое слово 'uses'.
+ - inline-функции могут использовать локальные переменные других функций.
+ - Компилятор ресурсов обрабатывает оператор 'NOT', 'OR', 'XOR', 'AND'.
+ - Расширены возможности директивы #print.
+ - Для MeOS введена поддержка функций EXIT(), ATEXIT(), PARAMSTR().
+ - Расширены возможности директив #ifdef и #ifndef.
+ - В компиляторе ресурсов добавлена поддержка определяемых пользователем типов
+    ресурсов.
+ - Для работы с классами добавлена поддержка конструктора и деструктора,
+    введены операторы 'new' и 'delete'.
+ - Добавлена оптимизация повторной инициализации регистров. Отключается опцией
+    /oir-.
+ - Добавлена возможность получать 32-битные бинарные файлы. Опция /b32.
+ - Имя и расположение startup.h-- файла можно указывать опцией командной
+    строки /sf=pathname.
+ - Для Windows программ добавлена возможность задавать значение выравнивания
+    файла (опция WAF=number).
+ - Для локальных структур добавлена поддержка 'static'.
+ - В 'inline' процедурах можно использовать локальные 'static' переменные.
+ - По адресам в регистре или переменной можно делать вызовы процедур с
+    различным типом передачи параметров.
+ - Для строковых констант введена поддержка суффиксов.
+ - В компиляторе ресурсов добавлена поддержка VERSIONINFO.
+ - В программах под Windows опцией WSI включается генерация усеченной таблицы
+   импорта.
+ - Введена поддержка выходного формата файла для MeOS.
+ - Введены дополнительные опции управления оптимизацией.
+ - Введена опция разрешения выравнивания в структурах.
+ - Оператор 'switch/SWITCH' может быть реализован 3 различными способами.
+ - Оператор 'while/WHILE' теперь работает немного быстрее.
+ - Расширены возможности операторов сравнения ('if', 'while', 'for'...).
+ - Для переменных введена возможность указывать сегмент отличный от сегмента
+    по умолчанию.
+
+
+ - Warning can is outed as errors.
+
+ - Possibility a choice register for calculation an index.
+ - Is changed location local variable in stack.
+ - Is made stricter checking for type a return and type a calling the functions.
+ - For stacked functions is made automatic announcement under their determination.
+ - Information on use local variable is take out in map-file.
+ - Is added new method of optimization - replacement variable on constant.
+ - Is added support of directives: #if, #elif, #pragma pack.
+ - Is added transfer a structure as parameter of function.
+ - Is added switch of support of termwise addressing an array ( /ba- ).
+ - An extended possibilities 'uses'.
+ - Is added support 'static variable' in structures.
+ - Is support assembler instructions Pentium 4 (SSE2, SSE3).
+ - Is support type variable 'double' and 'st'.
+ - Is support 64-bit variables.
+ - An extended possibilities of operations comparison of flags.
+ - Clearing the stack from parameters cdecl-functions is produced not immediately.
+ - Is entered support COFF format of object files.
+ - To project possible to attach the object files a format COFF.
+ - Is entered support of strings in format unicode.
+ - Changed work directives: #define #undef #ifdef/ifndef #inline.
+ - An extended possibilities 'sizeof'.
+ - Extended syntax of local marks.
+ - For functions is entered the keyword 'uses'.
+ - inline-functions can use local variable other functions.
+ - A Compiler of resources processes the operator 'NOT', 'OR', 'XOR', 'AND'.
+ - An Extended possibilities of directive #print.
+ - For MeOS support of functions EXIT(), ATEXIT(), PARAMSTR() is entered.
+ - Opportunities directives #ifdef and #ifndef are expanded.
+ - In compiler of resources is added support definied by user type of
+    resources.
+ - For work with classes is added support a constructor and destructor,
+    entereded operator 'new' and 'delete'.
+ - Is added optimization of the repeated initializing the registers.
+    Disabled by option /oir-.
+ - Is added capacity to get 32-bit binary files. Option /b32.
+ - A name and location startup.h-- file possible to indicate option command
+    line /sf=pathname.
+ - For Windows programs addaed possibility to set value of alignment
+    file (option WAF=number).
+ - For local structure is added support 'static'.
+ - In 'inline' procedures possible to use local 'static' variable.
+ - On addresses in register or variable possible to do call a procedure with
+    different type an transfer of parameters.
+ - For string constant is entered support of suffixes.
+ - In compiler resources is added support VERSIONINFO.
+ - In programs under Windows option WSI is included generation truncated tables
+   import.
+ - Is Entered support output format file for MeOS.
+ - Are Entered additional options of optimization control.
+ - Is Entered option of permit of justification in structures.
+ - An operator 'switch/SWITCH' can be marketed 3 different ways.
+ - An operator 'while/WHILE' now works little quicker.
+ - An extended possibilities of operators of comparison ('if', 'while', 'for...).
+ - For variable is incorporated possibility to indicate segment different from
+    segment by default.
+

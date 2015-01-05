@@ -17,3 +17,8 @@ D:\Users\Damir\Source\Repos\GNIDA3\GNIDA\obj\Release\GNIDA.dll
 D:\Users\Damir\Source\Repos\GNIDA3\GNIDA\obj\Release\GNIDA.pdb
 D:\Users\Damir\Source\Repos\GNIDA3\GNIDA.dll
 D:\Users\Damir\Source\Repos\GNIDA3\GNIDA.pdb
+D:\Users\Damir\Source\Repos\GNIDA32\GNIDA\obj\Release\GNIDA.csprojResolveAssemblyReference.cache
+D:\Users\Damir\Source\Repos\GNIDA32\GNIDA\obj\Release\GNIDA.dll
+D:\Users\Damir\Source\Repos\GNIDA32\GNIDA\obj\Release\GNIDA.pdb
+D:\Users\Damir\Source\Repos\GNIDA32\GNIDA.dll
+D:\Users\Damir\Source\Repos\GNIDA32\GNIDA.pdb

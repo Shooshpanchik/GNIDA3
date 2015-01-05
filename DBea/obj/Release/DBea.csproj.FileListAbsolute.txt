@@ -20,3 +20,8 @@ D:\Users\Damir\Source\Repos\GNIDA3\Dasmers\DBea.pdb
 D:\Users\Damir\Source\Repos\GNIDA3\DBea\obj\Release\DBea.csprojResolveAssemblyReference.cache
 D:\Users\Damir\Source\Repos\GNIDA3\DBea\obj\Release\DBea.dll
 D:\Users\Damir\Source\Repos\GNIDA3\DBea\obj\Release\DBea.pdb
+D:\Users\Damir\Source\Repos\GNIDA32\Dasmers\DBea.dll
+D:\Users\Damir\Source\Repos\GNIDA32\Dasmers\DBea.pdb
+D:\Users\Damir\Source\Repos\GNIDA32\DBea\obj\Release\DBea.csprojResolveAssemblyReference.cache
+D:\Users\Damir\Source\Repos\GNIDA32\DBea\obj\Release\DBea.dll
+D:\Users\Damir\Source\Repos\GNIDA32\DBea\obj\Release\DBea.pdb

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Data="clr-namespace:System.Data;assembly=System.Data" xmlns:local="clr-namespace:WpfApplication1"
         xmlns:MyNamespace="clr-namespace:WpfApplication1"
-        xmlns:Forms="clr-namespace:Be.Windows.Forms;assembly=Be.Windows.Forms.HexBox" x:Class="WpfApplication1.MainWindow"
+        x:Class="WpfApplication1.MainWindow"
         Title="MainWindow" Height="461.98" Width="525" Loaded="Window_Loaded">
     <Window.Resources>
         <MyNamespace:BaseDataSet x:Key="baseDataSet"/>
