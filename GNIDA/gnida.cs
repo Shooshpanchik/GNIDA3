@@ -164,11 +164,12 @@ namespace GNIDA
                     case Capstone.X86.INSN.JNP:
                     //case Capstone.X86.INSN.JMPQ:
                     //case Capstone.X86.INSN.LJMP:
+                        instr1.insn.Mnemonic = "goto";
                         if (instr1.ops[0].value.imm.imm64 == 0) instr1.ops[0].value.imm.imm64 = instr1.disp.value.d64;
                         if (ProcList.ContainsKey(instr1.ops[0].value.imm.imm64)) instr1.insn.Operands = ProcList[instr1.ops[0].value.imm.imm64].FName;
                         else
                         {
-                            instr1.insn.Operands = "Loc_" + instr1.ops[0].value.imm.imm64.ToString("X8");
+                            instr1.insn.Operands = "Loc_" + instr1.ops[0].value.imm.imm64.ToString("X8")+";";
                             AddLabel(instr1.ops[0].value.imm.imm64);
                         }
                             instr1.Addr = FO2RVA(instr1.Addr);

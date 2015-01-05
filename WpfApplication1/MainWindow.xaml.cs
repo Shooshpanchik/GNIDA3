@@ -137,8 +137,8 @@ namespace WpfApplication1
                         }
                         string c1 = baseDataSetproceduresTableAdapter.ScalarQuery(a) as string;
                         if (c1 == null) c1 = str.Inst.insn.Operands;
-                        if (c1 == "esi") c1 = "$call esi;";
-                        else if (c1 == "edi") c1 = "$call edi;";
+                        if (str.Inst.dt.Operands[0].Type == Capstone.X86.OP.REG)
+                                    c1 = "$call " + str.Inst.dt.Operands[0].Value.Reg.ToString();
                                 else c1 = c1 + "();";
                         Run fnc = new Run(c1);
                         fnc.Foreground = Brushes.DarkCyan;
@@ -186,6 +186,7 @@ namespace WpfApplication1
                 Code1.Inlines.Clear();
                 baseDataSet.procedures.Clear();
                 baseDataSetproceduresTableAdapter.Fill(baseDataSet.procedures);
+                HEX.Document.Blocks.Clear();
                 this.Title = "GNIDA - " + dlg.FileName;
 
                 Window1 wd = new Window1(dlg.FileName);
@@ -207,12 +208,45 @@ namespace WpfApplication1
                         }
                     }
                 }
+                foreach (Section1 sct in MyGNIDA.assembly.Sections())
+                {
+                    Paragraph p = new Paragraph();
+                    p.Name = sct.Name.Replace(".","_");
+                    ulong st = sct.RVA + MyGNIDA.assembly.ImageBase();
+                    byte[] hs = new byte[16];
+                    while (st < Math.Min(sct.RawSize(), sct.VirtualSize) + sct.RVA + MyGNIDA.assembly.ImageBase())
+                      {
+                          string s = sct.Name + ":" + (st).ToString("X8") + "  ";
+                          hs = MyGNIDA.assembly.ReadBytes(MyGNIDA.RVA2FO(st), 16);
+                          foreach (byte bt in hs)s += bt.ToString("X2") + " ";
+                          s += "   ";
+                          foreach (byte bt in hs)
+                            if ((bt > 0x20) & (bt<0x80)) s += (char)bt;
+                              else s += ".";
+                          p.Inlines.Add(s);
+                          p.Inlines.Add(new LineBreak());
+                          st += 16;
+                      };
+                    if (sct.RawSize() < sct.VirtualSize)
+                    {
+                        for (ulong x = 0; x < sct.VirtualSize; x += 16)
+                        {
+                            string s = sct.Name + ":" + (x + sct.RawOffset + sct.RVA + MyGNIDA.assembly.ImageBase()).ToString("X8") + "  ";
+                            s += "?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ??    ????????????????";
+                            Run rn = new Run(s);
+                            rn.Name = p.Name + (x + sct.RawOffset + sct.RVA + MyGNIDA.assembly.ImageBase()).ToString("X8");
+                            p.Inlines.Add(rn);
+                            p.Inlines.Add(new LineBreak());
+                        }
+                    }
+                 HEX.Document.Blocks.Add(p);
+                }
+
             }
         }
 
         private WpfApplication1.BaseDataSet baseDataSet;
         private WpfApplication1.BaseDataSetTableAdapters.proceduresTableAdapter baseDataSetproceduresTableAdapter;
-        System.Windows.Data.CollectionViewSource strViewSource;
         private ContextMenu mnu;
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
