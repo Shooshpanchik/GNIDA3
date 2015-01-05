@@ -138,7 +138,8 @@ namespace WpfApplication1
                         string c1 = baseDataSetproceduresTableAdapter.ScalarQuery(a) as string;
                         if (c1 == null) c1 = str.Inst.insn.Operands;
                         if (c1 == "esi") c1 = "$call esi;";
-                        else c1=c1+"();";
+                        else if (c1 == "edi") c1 = "$call edi;";
+                                else c1 = c1 + "();";
                         Run fnc = new Run(c1);
                         fnc.Foreground = Brushes.DarkCyan;
                         fnc.ContextMenu = mnu;
@@ -185,7 +186,7 @@ namespace WpfApplication1
                 Code1.Inlines.Clear();
                 baseDataSet.procedures.Clear();
                 baseDataSetproceduresTableAdapter.Fill(baseDataSet.procedures);
-//                c = "c" + baseDataSetproceduresTableAdapter.GetFuncAddr(addr) as string;
+                this.Title = "GNIDA - " + dlg.FileName;
 
                 Window1 wd = new Window1(dlg.FileName);
                 if (wd.ShowDialog() == true)
@@ -266,9 +267,21 @@ namespace WpfApplication1
 
         private void Code_SelectionChanged(object sender, RoutedEventArgs e)
         {
+            TextPointer caretLineStart = Code.CaretPosition.GetLineStartPosition(0);
+            TextPointer p = Code.Document.ContentStart.GetLineStartPosition(0);
+            int currentLineNumber = 1;
 
-            CurPos.Content = "X:" + Code.CaretPosition.GetLineStartPosition(0).GetOffsetToPosition(Code.Selection.Start).ToString() + " Y:"
-                                 + Code.Selection.Start.GetOffsetToPosition(Code.Selection.Start).ToString();
+            while (true)
+            {
+                if (caretLineStart.CompareTo(p) < 0)break;
+                int result;
+                p = p.GetLineStartPosition(1, out result);
+                if (result == 0)break;
+                currentLineNumber++;
+            }
+            ;
+            CurPos.Content = "X:" + Code.CaretPosition.GetLineStartPosition(0).GetOffsetToPosition(Code.Selection.Start).ToString() +
+                             " Y:"+ currentLineNumber.ToString();
                             
         }
 

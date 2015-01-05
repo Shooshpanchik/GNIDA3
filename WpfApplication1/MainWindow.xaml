@@ -4,7 +4,7 @@
         xmlns:Data="clr-namespace:System.Data;assembly=System.Data" xmlns:local="clr-namespace:WpfApplication1"
         xmlns:MyNamespace="clr-namespace:WpfApplication1"
         x:Class="WpfApplication1.MainWindow"
-        Title="MainWindow" Height="461.98" Width="525" Loaded="Window_Loaded">
+        Title="GNIDA" Height="461.98" Width="525" Loaded="Window_Loaded">
     <Window.Resources>
         <MyNamespace:BaseDataSet x:Key="baseDataSet"/>
         <CollectionViewSource x:Key="proceduresViewSource" Source="{Binding procedures, Source={StaticResource baseDataSet}}"/>

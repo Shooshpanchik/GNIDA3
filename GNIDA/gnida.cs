@@ -93,8 +93,32 @@ namespace GNIDA
                 lst.Add(new Stroka(this, instr1));
                 switch(instr1.ins)
                 {
+                    case Capstone.X86.INSN.MOVSLDUP:
+                        instr1.insn.Operands = "";//movsd
+                        break;
+                    case Capstone.X86.INSN.POPCNT:
+                    case Capstone.X86.INSN.PUSHFD:
+                        instr1.insn.Operands = instr1.ops[0].ToString(AddVar) + ";";
+                        break;
+                    case Capstone.X86.INSN.MUL:
+                        instr1.ops[1].size = 2;
+                        instr1.insn.Operands = instr1.ops[0].ToString(AddVar) + ", " + instr1.ops[1].ToString(AddVar) + ";";
+                        break;
+                    case Capstone.X86.INSN.LODSB:
+                    case Capstone.X86.INSN.FUCOMPI:
+                        instr1.insn.Operands = instr1.ops[0].ToString(AddVar) + ", " + instr1.ops[1].ToString(AddVar) + ";";
+                        break;
+                    case Capstone.X86.INSN.XRSTOR64:
+                        instr1.insn.Operands = "DSDWORD[ECX], " + instr1.ops[1].ToString(AddVar) + ";";
+                        break;
+                    case Capstone.X86.INSN.CMPXCHG16B:
+                        instr1.insn.Mnemonic = "$lock $cmpxchg";
+                        instr1.insn.Operands = "DSDWORD[EDX], " + instr1.ops[1].ToString(AddVar) + ";";
+                        break;
+                    case Capstone.X86.INSN.LEAVE:
+                        instr1.insn.Operands = instr1.ops[0].ToString(AddVar) + ", " + instr1.ops[1].ToString(AddVar) + ";";
+                        break;
                     case Capstone.X86.INSN.CMOVS:
-                        instr1.insn.Mnemonic = "$cmp";
                         instr1.insn.Operands = instr1.ops[0].ToString(AddVar) + ", " + instr1.ops[1].ToString(AddVar) + ";";
                         break;
                     case Capstone.X86.INSN.AND:

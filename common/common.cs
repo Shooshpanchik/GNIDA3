@@ -439,15 +439,30 @@ namespace plugins
     public struct OPERAND
     {
         public value1 value;
-        //public ushort size; //Fuck... I need 16_t only for 'stx' size qualifier.
+        public ushort size; //Fuck... I need 16_t only for 'stx' size qualifier.
         public OP flags;
         public string ToString(AddVr AddVarProc)
         {
             switch(flags)
             {
-                case OP.REG: return value.reg.ToString();
+                case OP.INVALID: return "EAX";// "INVALID";
+                case OP.REG:
+                            switch(value.reg)
+                            { 
+                                case REG.FS:return "FSDWORD[0]";
+                                default : return value.reg.ToString();
+                            }
+                             
                 case OP.IMM: return "0x" + value.imm.imm64.ToString("X8");
-                case OP.MEM: return AddVarProc(value.imm.imm64, "", 4);
+                case OP.MEM:
+                    {
+                        Int32 vl = (Int32)value.imm.imm32;
+                        if (size != 2) size = 4;
+                        if (vl > 0) return AddVarProc(value.imm.imm64, "", size);
+                        vl = -vl;
+                        if (size == 2) return "DSWORD[EBP-0x" + vl.ToString("X8") + "]";
+                            return "DSDWORD[EBP-0x" + vl.ToString("X8") + "]";
+                    }
             }
             return base.ToString();
         }
