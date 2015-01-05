@@ -100,7 +100,8 @@ namespace GNIDA
                                 { 
                                     b = (ulong)instr1.ops[x].value.imm.imm64;
                                     AddVar(b, "dword_" + b.ToString("X8"), 4);
-                                    instr1.insn.Operands = "dword_" + b.ToString("X8") + ", eax";//SIB
+                                    instr1.insn.Mnemonic = "";
+                                    instr1.insn.Operands = "dword_" + b.ToString("X8") + " = EAX;";//SIB
                                 };
                         }
                         //instr1.insn.Operands = "dword_" + b.ToString("X8") +", eax";//SIB
