@@ -13,3 +13,8 @@ D:\Users\Damir\Source\Repos\GNIDA3\WpfApplication1\Release\Dasmers\DBea.pdb
 D:\Users\Damir\Source\Repos\GNIDA3\DBea\obj\Debug\DBea.csprojResolveAssemblyReference.cache
 D:\Users\Damir\Source\Repos\GNIDA3\DBea\obj\Debug\DBea.dll
 D:\Users\Damir\Source\Repos\GNIDA3\DBea\obj\Debug\DBea.pdb
+D:\Users\Damir\Source\Repos\GNIDA32\Dasmers\DBea.dll
+D:\Users\Damir\Source\Repos\GNIDA32\Dasmers\DBea.pdb
+D:\Users\Damir\Source\Repos\GNIDA32\DBea\obj\Debug\DBea.csprojResolveAssemblyReference.cache
+D:\Users\Damir\Source\Repos\GNIDA32\DBea\obj\Debug\DBea.dll
+D:\Users\Damir\Source\Repos\GNIDA32\DBea\obj\Debug\DBea.pdb

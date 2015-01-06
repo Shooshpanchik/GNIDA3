@@ -4,7 +4,7 @@
         xmlns:Data="clr-namespace:System.Data;assembly=System.Data" xmlns:local="clr-namespace:WpfApplication1"
         xmlns:MyNamespace="clr-namespace:WpfApplication1"
         x:Class="WpfApplication1.MainWindow"
-        Title="GNIDA" Height="461.98" Width="525" Loaded="Window_Loaded">
+        Title="GNIDA" Height="461.98" Width="525" Loaded="Window_Loaded" Icon="Images/favicon.ico">
     <Window.Resources>
         <MyNamespace:BaseDataSet x:Key="baseDataSet"/>
         <CollectionViewSource x:Key="proceduresViewSource" Source="{Binding procedures, Source={StaticResource baseDataSet}}"/>
@@ -63,7 +63,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="132*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="40*"></RowDefinition>
             </Grid.RowDefinitions>
             <TabControl Grid.Column="0" Grid.Row="0" Margin="0,0,3,0" Grid.RowSpan="1">
                 <TabItem Header="Functions">
@@ -97,8 +97,9 @@
                             <ColumnDefinition Width="169*"/>
                             <ColumnDefinition Width="136*"/>
                         </Grid.ColumnDefinitions>
-                        <DockPanel Margin="0" VerticalAlignment="Top" LastChildFill="False" Height="19" Grid.ColumnSpan="3" Width="378" HorizontalAlignment="Left">
-                            <CheckBox Content="Adress" Height="19" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <DockPanel Margin="0,0,-8,0" VerticalAlignment="Top" LastChildFill="False" Height="24" Grid.ColumnSpan="3" Width="378" HorizontalAlignment="Left">
+                            <CheckBox Content="Adress" Height="19" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"/>
+                            <CheckBox Content="Dump" Height="19" VerticalAlignment="Top" Width="74" Margin="5"/>
                         </DockPanel>
                         <RichTextBox x:Name="Code" HorizontalAlignment="Left" BorderThickness="1,0,1,1" FontFamily="Lucida Console" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="3" Margin="0,24,0,0" ContextMenuOpening="Code_ContextMenuOpening" IsDocumentEnabled="True" SelectionChanged="Code_SelectionChanged">
                             <FlowDocument PageWidth="10000">
@@ -157,7 +158,7 @@
             				HorizontalAlignment="Stretch"
             				ShowsPreview="True" Margin="1,0,0,0" Grid.ColumnSpan="3" Height="3" VerticalAlignment="Center"
               />
-            <ListBox Grid.Row="2" x:Name="Log" Margin="1,0,0,0" Grid.ColumnSpan="3" MinHeight="80"/>
+            <ListBox Grid.Row="2" x:Name="Log" Margin="1,0,0,0" Grid.ColumnSpan="3" MinHeight="63" ScrollViewer.VerticalScrollBarVisibility="Visible" VerticalContentAlignment="Bottom" ScrollViewer.CanContentScroll="False"/>
         </Grid>
 
 

@@ -11,6 +11,11 @@ namespace GNIDA
 {
     public class GNIDA1 : IGNIDA
     {
+        public class lst
+        {
+            public ulong Addr;
+        }
+        public List<lst> Listing;
         public plugins.ILoader assembly;
         public IDasmer MeDisasm;
         public BackgroundWorker bw = new BackgroundWorker();
@@ -27,7 +32,6 @@ namespace GNIDA
         MyDictionary NewSubs = new MyDictionary();
         public GNIDA1(string FlirtCfg)
         {
-
             flirt = new Flirt(FlirtCfg);
             FullProcList().Parent = this;
             VarDict().Parent = this;
@@ -42,7 +46,7 @@ namespace GNIDA
         private List<ulong> LabelList = new List<ulong>();
         private void AddLabel(ulong addr)
         {
-            addr = RVA2FO(addr);
+            //addr = RVA2FO(addr);
             if (!LabelList.Contains(addr))
             {
                 if ((!DTasks.Contains(addr) && (!Tasks.Contains(addr))))
@@ -64,13 +68,13 @@ namespace GNIDA
             if (NewSubs != null)if (!NewSubs.ContainsKey(x)) NewSubs.Add(x, tmpfunc);
         }
 
-        public ulong DisasmFunc(List<Stroka> lst, ulong addr, MyDictionary ProcList)
+        public ulong DisasmFunc(SortedList<ulong, Stroka> lst, ulong addr, MyDictionary ProcList)
         {
             Tasks = new List<ulong>();
             DTasks = new List<ulong>();
             LabelList = new List<ulong>();
-            ulong StartAdr = addr;
-            ulong EndAddr = addr;
+            ulong StartAdr = FO2RVA(addr);
+            ulong EndAddr = FO2RVA(addr);
             DISASM_INOUT_PARAMS param = new DISASM_INOUT_PARAMS();
             uint Len = 0;
             byte[] sf_prefixes = new byte[Dasmer.MAX_INSTRUCTION_LEN];
@@ -81,16 +85,17 @@ namespace GNIDA
             param.options = (byte)(Dasmer.DISASM_OPTION_APPLY_REL | Dasmer.DISASM_OPTION_OPTIMIZE_DISP);
 
             IInstruction instr1;
-            Tasks.Add(addr);
+            Tasks.Add(FO2RVA(addr));
             for (uint i = 0; Tasks.Count > 0; i++)
             {
-                param.bas = FO2RVA(Tasks[0]);
-                Len = MeDisasm.disassemble(Tasks[0], out instr1, ref param);
+                param.bas = Tasks[0];
+                Len = MeDisasm.disassemble(RVA2FO(Tasks[0]), out instr1, ref param);
                 instr1.insn.Mnemonic = "$" + instr1.insn.Mnemonic;
                 if (EndAddr < (Tasks[0] + Len)) EndAddr = Tasks[0] + Len;
                 DTasks.Add(Tasks[0]);
                 Tasks.Remove(Tasks[0]);
-                lst.Add(new Stroka(this, instr1));
+                instr1.Addr = FO2RVA(instr1.Addr);
+                lst.Add(instr1.Addr, new Stroka(this, instr1));
                 switch(instr1.ins)
                 {
                     case Capstone.X86.INSN.MOVSLDUP:
@@ -166,26 +171,25 @@ namespace GNIDA
                     //case Capstone.X86.INSN.LJMP:
                         instr1.insn.Mnemonic = "goto";
                         if (instr1.ops[0].value.imm.imm64 == 0) instr1.ops[0].value.imm.imm64 = instr1.disp.value.d64;
-                        if (ProcList.ContainsKey(instr1.ops[0].value.imm.imm64)) instr1.insn.Operands = ProcList[instr1.ops[0].value.imm.imm64].FName;
+                        if (ProcList.ContainsKey(instr1.ops[0].value.imm.imm64)) instr1.insn.Operands = ProcList[instr1.ops[0].value.imm.imm64].FName+";";
                         else
                         {
                             instr1.insn.Operands = "Loc_" + instr1.ops[0].value.imm.imm64.ToString("X8")+";";
                             AddLabel(instr1.ops[0].value.imm.imm64);
                         }
-                            instr1.Addr = FO2RVA(instr1.Addr);
                         continue;// Don't disasm after it
 
                     case Capstone.X86.INSN.CALL: 
                     case Capstone.X86.INSN.CALLW:
-                    case Capstone.X86.INSN.LCALL: ulong a = 0;
-                        switch(instr1.dt.Operands[0].Type)
-                        {
-                            case Capstone.X86.OP.IMM: a = (ulong)instr1.dt.Operands[0].Value.Imm; break;
-                            case Capstone.X86.OP.MEM: a = (ulong)instr1.dt.Operands[0].Value.Mem.Disp; break;
-                        }
+                    case Capstone.X86.INSN.LCALL: ulong a = instr1.ops[0].value.imm.imm64;
                         if (a == 0) break;
-                        if (instr1.dt.Operands[0].Type == Capstone.X86.OP.MEM)
-                            if (!ProcList.ContainsKey(a))
+                        if (instr1.ops[0].flags == Capstone.X86.OP.REG)
+                        {
+                            instr1.insn.Operands = instr1.ops[0].value.reg.ToString();
+                            break;
+                        }
+                        if (instr1.ops[0].flags == Capstone.X86.OP.MEM)
+                                if (!ProcList.ContainsKey(a))
                             {
                                 smp = assembly.ReadBytes(RVA2FO(a), 4);
                                 ulong a1 = (ulong)((smp[3] << 24) + (smp[2] << 16) + (smp[1] << 8) + smp[0]);
@@ -206,23 +210,15 @@ namespace GNIDA
                     case Capstone.X86.INSN.RET:
                     case Capstone.X86.INSN.RETF:
                     case Capstone.X86.INSN.RORX:
-                        instr1.Addr = FO2RVA(instr1.Addr);
                         continue;// Don't disasm after it
                 };
                 if ((!DTasks.Contains(instr1.Addr + Len)) && (!Tasks.Contains(instr1.Addr + Len)))
                     Tasks.Add(instr1.Addr + Len);
-                instr1.Addr = FO2RVA(instr1.Addr);
             }
-            lst.Sort(delegate(Stroka x, Stroka y)
-            {
-                if (x.addr > y.addr) return 1;
-                if (x.addr == y.addr) return 0;
-                return -1;
-            });
             foreach (ulong Addr in LabelList)
             {
-                Stroka result = lst.Find(delegate(Stroka sstr){return sstr.addr == FO2RVA(Addr);});
-                if (result != null)
+                Stroka result;// = ;//.Find (delegate(Stroka sstr){return sstr.addr == FO2RVA(Addr);});
+                if (lst.TryGetValue(Addr, out result))
                     result.Label = "Loc_" + result.Inst.Addr.ToString("X8");
             }
             return EndAddr-StartAdr;
@@ -283,7 +279,7 @@ namespace GNIDA
 
 
 
-        private List<Stroka> tmp;
+        private SortedList<ulong, Stroka> tmp;
         private ulong adr,len;
         private string Name;
         private TFunc ffnc;
@@ -298,7 +294,7 @@ namespace GNIDA
                     RaiseVarFuncEvent(this, tv.Value);
                 }
                 NewVars.Clear();
-                foreach (Stroka t in tmp) RaiseAddStrEvent(t.addr, t, t.ToCmmString(NewSubs));
+                foreach (KeyValuePair<ulong, Stroka> t in tmp) RaiseAddStrEvent(t.Key, t.Value, t.Value.ToCmmString(NewSubs));
                 if (NewSubs.Count > 0)
                 {
                     NewSubs.Clear();
@@ -317,7 +313,7 @@ namespace GNIDA
                     e.Cancel = true;
                     break;
                 }
-                tmp = new List<Stroka>();
+                tmp = new SortedList<ulong, Stroka>();
                 ulong Len = DisasmFunc(tmp, RVA2FO(dct.Key), FullProcList());
                 dct.Value.Length = Len;
                 dct.Value.bytes = assembly.ReadBytes(RVA2FO(dct.Key), (int)Len);
@@ -366,7 +362,7 @@ namespace GNIDA
         public delegate void VarEvent(object sender, TVar Var);
         public delegate void AddFuncEvent(object sender, TFunc Func);
         public delegate void FuncDmed(object sender, TFunc Func);
-        public delegate void AddStrEvent(uint addr, Stroka t, List<string> Str);
+        public delegate void AddStrEvent(ulong addr, Stroka t, List<string> Str);
         public event LogEvent OnLogEvent;
         public event FuncChanged OnFuncChanged;
         public event VarEvent OnVarEvent;
@@ -393,7 +389,7 @@ namespace GNIDA
         {
             if (OnAddFunc != null) OnAddFunc(sender, Func);
         }
-        private void RaiseAddStrEvent(uint addr, Stroka t, List<string> Str)
+        private void RaiseAddStrEvent(ulong addr, Stroka t, List<string> Str)
         {
             if (OnAddStr != null) OnAddStr(addr,t,  Str);
         }

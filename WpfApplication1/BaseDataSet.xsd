@@ -100,10 +100,10 @@ WHERE        (Addr &lt;= @Param1) AND ([end] &gt; @Param1)</CommandText>
   <xs:element name="BaseDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="BaseDataSet" msprop:Generator_UserDSName="BaseDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="procedures" msprop:Generator_TableClassName="proceduresDataTable" msprop:Generator_TableVarName="tableprocedures" msprop:Generator_RowChangedName="proceduresRowChanged" msprop:Generator_TablePropName="procedures" msprop:Generator_RowDeletingName="proceduresRowDeleting" msprop:Generator_RowChangingName="proceduresRowChanging" msprop:Generator_RowEvHandlerName="proceduresRowChangeEventHandler" msprop:Generator_RowDeletedName="proceduresRowDeleted" msprop:Generator_RowClassName="proceduresRow" msprop:Generator_UserTableName="procedures" msprop:Generator_RowEvArgName="proceduresRowChangeEvent">
+        <xs:element name="procedures" msprop:Generator_TableClassName="proceduresDataTable" msprop:Generator_TableVarName="tableprocedures" msprop:Generator_TablePropName="procedures" msprop:Generator_RowDeletingName="proceduresRowDeleting" msprop:Generator_RowChangingName="proceduresRowChanging" msprop:Generator_RowEvHandlerName="proceduresRowChangeEventHandler" msprop:Generator_RowDeletedName="proceduresRowDeleted" msprop:Generator_UserTableName="procedures" msprop:Generator_RowChangedName="proceduresRowChanged" msprop:Generator_RowEvArgName="proceduresRowChangeEvent" msprop:Generator_RowClassName="proceduresRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Addr" msprop:Generator_ColumnVarNameInTable="columnAddr" msprop:Generator_ColumnPropNameInRow="Addr" msprop:Generator_ColumnPropNameInTable="AddrColumn" msprop:Generator_UserColumnName="Addr" type="xs:long" />
+              <xs:element name="Addr" msprop:Generator_ColumnVarNameInTable="columnAddr" msprop:Generator_ColumnPropNameInRow="Addr" msprop:Generator_ColumnPropNameInTable="AddrColumn" msprop:Generator_UserColumnName="Addr" type="xs:unsignedInt" />
               <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -112,7 +112,7 @@ WHERE        (Addr &lt;= @Param1) AND ([end] &gt; @Param1)</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnPropNameInTable="typeColumn" msprop:Generator_UserColumnName="type" type="xs:int" minOccurs="0" />
-              <xs:element name="end" msprop:Generator_ColumnVarNameInTable="columnend" msprop:Generator_ColumnPropNameInRow="end" msprop:Generator_ColumnPropNameInTable="endColumn" msprop:Generator_UserColumnName="end" type="xs:long" minOccurs="0" />
+              <xs:element name="end" msprop:Generator_ColumnVarNameInTable="columnend" msprop:Generator_ColumnPropNameInRow="end" msprop:Generator_ColumnPropNameInTable="endColumn" msprop:Generator_UserColumnName="end" type="xs:unsignedInt" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

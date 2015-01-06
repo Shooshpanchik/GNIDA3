@@ -46,14 +46,14 @@ namespace WpfApplication1
         }
         private void AddFuncEvent2(object sender, TFunc func)
         {
-            BaseDataSet.proceduresRow rw = baseDataSet.procedures.FindByAddr((long)func.Addr);
+            BaseDataSet.proceduresRow rw = baseDataSet.procedures.FindByAddr((uint)func.Addr);
             if (rw == null)
             {
                 rw = baseDataSet.procedures.NewproceduresRow();
-                rw.Addr = (long)func.Addr;
+                rw.Addr = (uint)func.Addr;
                 rw.Name = func.FName;
                 rw.type = func.type;
-                rw.end = (long)(func.Addr + func.Length);
+                rw.end = (uint)(func.Addr + func.Length);
                 baseDataSet.procedures.AddproceduresRow(rw);
                 baseDataSetproceduresTableAdapter.Insert(rw.Addr, rw.Name, rw.type, (long)(func.Addr + func.Length));
             }
@@ -74,25 +74,25 @@ namespace WpfApplication1
         private void AddFuncEvent1(object sender, TFunc func)
         {
             if (func.type == 3) return;
-            BaseDataSet.proceduresRow rw = baseDataSet.procedures.FindByAddr((long)func.Addr);
+            BaseDataSet.proceduresRow rw = baseDataSet.procedures.FindByAddr((uint)func.Addr);
             if (rw == null) rw = baseDataSet.procedures.NewproceduresRow();
-            rw.Addr = (long)func.Addr;
+            rw.Addr = (uint)func.Addr;
             rw.Name = func.FName;
             rw.type = func.type;
-            rw.end = (long)(func.Addr + func.Length);
+            rw.end = (uint)(func.Addr + func.Length);
             baseDataSet.procedures.AddproceduresRow(rw);
             baseDataSetproceduresTableAdapter.Insert(rw.Addr, rw.Name, rw.type, (long)(func.Addr + func.Length));
         }
 
-        private void AddText1(uint addr, Stroka str, List<string> text)
+        private void AddText1(ulong addr, Stroka str, List<string> text)
         {
-            string c = "c" + baseDataSetproceduresTableAdapter.GetFuncAddr(addr) as string;
+            string c = "c" + baseDataSetproceduresTableAdapter.GetFuncAddr((long)addr) as string;
             if ((c == "c"))
             {                
                 BaseDataSet.proceduresRow rw = baseDataSet.procedures.NewproceduresRow();
-                rw.Addr = addr;
+                rw.Addr = (uint)addr;
                 rw.Name = "Proc_" + addr.ToString("X8");
-                if(baseDataSet.procedures.FindByAddr(addr) == null) baseDataSet.procedures.AddproceduresRow(rw);
+                if (baseDataSet.procedures.FindByAddr((uint)addr) == null) baseDataSet.procedures.AddproceduresRow(rw);
                 c = "c" + rw.Name;
             };
             Paragraph blc = this.FindName(c) as Paragraph;

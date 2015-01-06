@@ -9,3 +9,7 @@ D:\Users\Damir\Source\Repos\GNIDA3\common\obj\Debug\common.dll
 D:\Users\Damir\Source\Repos\GNIDA3\common\obj\Debug\common.pdb
 D:\Users\Damir\Source\Repos\GNIDA3\common.dll
 D:\Users\Damir\Source\Repos\GNIDA3\common.pdb
+D:\Users\Damir\Source\Repos\GNIDA32\common\obj\Debug\common.dll
+D:\Users\Damir\Source\Repos\GNIDA32\common\obj\Debug\common.pdb
+D:\Users\Damir\Source\Repos\GNIDA32\common.dll
+D:\Users\Damir\Source\Repos\GNIDA32\common.pdb

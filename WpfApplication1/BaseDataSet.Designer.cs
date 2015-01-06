@@ -389,7 +389,7 @@ namespace WpfApplication1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public proceduresRow AddproceduresRow(long Addr, string Name, int type, long end) {
+            public proceduresRow AddproceduresRow(uint Addr, string Name, int type, uint end) {
                 proceduresRow rowproceduresRow = ((proceduresRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Addr,
@@ -403,7 +403,7 @@ namespace WpfApplication1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public proceduresRow FindByAddr(long Addr) {
+            public proceduresRow FindByAddr(uint Addr) {
                 return ((proceduresRow)(this.Rows.Find(new object[] {
                             Addr})));
             }
@@ -434,13 +434,13 @@ namespace WpfApplication1 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnAddr = new global::System.Data.DataColumn("Addr", typeof(long), null, global::System.Data.MappingType.Element);
+                this.columnAddr = new global::System.Data.DataColumn("Addr", typeof(uint), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAddr);
                 this.columnName = new global::System.Data.DataColumn("Name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnName);
                 this.columntype = new global::System.Data.DataColumn("type", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntype);
-                this.columnend = new global::System.Data.DataColumn("end", typeof(long), null, global::System.Data.MappingType.Element);
+                this.columnend = new global::System.Data.DataColumn("end", typeof(uint), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnend);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnAddr}, true));
@@ -589,9 +589,9 @@ namespace WpfApplication1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public long Addr {
+            public uint Addr {
                 get {
-                    return ((long)(this[this.tableprocedures.AddrColumn]));
+                    return ((uint)(this[this.tableprocedures.AddrColumn]));
                 }
                 set {
                     this[this.tableprocedures.AddrColumn] = value;
@@ -632,10 +632,10 @@ namespace WpfApplication1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public long end {
+            public uint end {
                 get {
                     try {
-                        return ((long)(this[this.tableprocedures.endColumn]));
+                        return ((uint)(this[this.tableprocedures.endColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'end\' in table \'procedures\' is DBNull.", e);
