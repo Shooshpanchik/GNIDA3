@@ -292,6 +292,7 @@ namespace WpfApplication1
                 Log.Items.Add(MyProc.StandardOutput.ReadLine());
             } while (!MyProc.StandardOutput.EndOfStream);
             MyProc.WaitForExit();
+            Log.ScrollIntoView(Log.Items[Log.Items.Count - 1]);
         }
 
         private void Code_ContextMenuOpening(object sender, ContextMenuEventArgs e)
