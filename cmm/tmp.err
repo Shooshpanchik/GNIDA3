@@ -1,16 +1,16 @@
-cmm\tmp.cmm(656)#1> SHORT jump distance too large.
-cmm\tmp.cmm(778)#2> SHORT jump distance too large.
-cmm\tmp.cmm(787)#3> SHORT jump distance too large.
-cmm\tmp.cmm(858)#4> SHORT jump distance too large.
-cmm\tmp.cmm(890)#5> SHORT jump distance too large.
-cmm\tmp.cmm(984)#6> SHORT jump distance too large.
-cmm\tmp.cmm(1037)#7> SHORT jump distance too large.
-cmm\tmp.cmm(1087)#8> SHORT jump distance too large.
-cmm\tmp.cmm(1053)#9> SHORT jump distance too large.
-cmm\tmp.cmm(1060)#10> SHORT jump distance too large.
-cmm\tmp.cmm(886)#11> '_vsnprintf' undefined.
-cmm\tmp.cmm(195)#12> '_ismbblead' undefined.
-cmm\tmp.cmm(428)#13> '_initterm' undefined.
-cmm\tmp.cmm(208)#14> '_cexit' undefined.
-cmm\tmp.cmm(304)#15> '_amsg_exit' undefined.
-cmm\tmp.cmm(638)#16> 'SetProcessDEPPolicy' undefined.
+cmm\tmp.cmm(300)#1> SHORT jump distance too large.
+cmm\tmp.cmm(422)#2> SHORT jump distance too large.
+cmm\tmp.cmm(431)#3> SHORT jump distance too large.
+cmm\tmp.cmm(502)#4> SHORT jump distance too large.
+cmm\tmp.cmm(534)#5> SHORT jump distance too large.
+cmm\tmp.cmm(628)#6> SHORT jump distance too large.
+cmm\tmp.cmm(681)#7> SHORT jump distance too large.
+cmm\tmp.cmm(731)#8> SHORT jump distance too large.
+cmm\tmp.cmm(697)#9> SHORT jump distance too large.
+cmm\tmp.cmm(704)#10> SHORT jump distance too large.
+cmm\tmp.cmm(914)#11> illegal syntax within [ ].
+cmm\tmp.cmm(915)#12> 'FSDWORD' undefined.
+cmm\tmp.cmm(917)#13> ';' expected.
+cmm\tmp.cmm(917)#14> operator identifier expected.
+cmm\tmp.cmm(918)#15> ';' expected.
+cmm\tmp.cmm(998)#16> illegal syntax within [ ].

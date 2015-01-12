@@ -142,21 +142,23 @@ namespace plugins
     {
         IGNIDA Parent;
         public uint addr;
+        public ulong oaddr;
         public string UpComment;
         public string Comment;
         public string SubComment;
         public IInstruction Inst;
         public string Label = "";
-        public Stroka(IGNIDA Prnt, IInstruction Ins, string UpC = "", string Com = "", string SubC = "")
+        public Stroka(IGNIDA Prnt, IInstruction Ins, ulong _oadr = 0, string UpC = "", string Com = "", string SubC = "")
         {
             Parent = Prnt;
             Inst = Ins;
             UpComment = UpC;
             Comment = Com;
             SubComment = SubC;
+            oaddr = _oadr;
             addr = (uint)Prnt.FO2RVA(Ins.Addr);
         }
-        public List<string> ToCmmString(Dictionary<ulong, TFunc> NewSubs)
+        public List<string> ToCmmString(SortedList<ulong, TFunc> NewSubs)
         {
             string bt = "";
             string bt2 = "                      ";
@@ -270,6 +272,7 @@ namespace plugins
         public string LibraryName;
         public int type;
         public ulong Ordinal;
+        public SortedList<ulong, Stroka> strs = new SortedList<ulong,Stroka>();
         public TFunc(ulong addr, int Type, ulong Ord = 0, string Name = "", string LibName = "")
         {
             Addr = addr;
@@ -280,7 +283,7 @@ namespace plugins
             else FName = "proc_" + Addr.ToString("X8");
         }
     }
-    public class MyDictionary : Dictionary<ulong, TFunc>
+    public class MyDictionary : SortedList<ulong, TFunc>
     {
         public IGNIDA Parent;
         public void AddFunc(TFunc value)
@@ -448,9 +451,9 @@ namespace plugins
                 case OP.INVALID: return "EAX";// "INVALID";
                 case OP.REG:
                             switch(value.reg)
-                            { 
-                                case REG.FS:return "FSDWORD[0]";
-                                default : return value.reg.ToString();
+                            {
+                                case REG.FS: return "FSDWORD[0x";
+                                default: return value.reg.ToString();
                             }
                              
                 case OP.IMM: return "0x" + value.imm.imm64.ToString("X8");

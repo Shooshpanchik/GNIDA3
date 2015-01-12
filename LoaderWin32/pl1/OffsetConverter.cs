@@ -61,7 +61,7 @@ namespace LoaderWin32
         {
             if (rva == 0)
                 return 0;
-            return rva - TargetSection.RVA + TargetSection.RawOffset;
+            return rva + TargetSection.RawOffset - TargetSection.RVA;
         }
         /// <summary>
         /// Transforms a physical file offset to a relative virtual address.

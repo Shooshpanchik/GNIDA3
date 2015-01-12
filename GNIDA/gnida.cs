@@ -11,11 +11,7 @@ namespace GNIDA
 {
     public class GNIDA1 : IGNIDA
     {
-        public class lst
-        {
-            public ulong Addr;
-        }
-        public List<lst> Listing;
+
         public plugins.ILoader assembly;
         public IDasmer MeDisasm;
         public BackgroundWorker bw = new BackgroundWorker();
@@ -61,7 +57,7 @@ namespace GNIDA
             if (NewVars != null) if (!NewVars.ContainsKey(addr)) NewVars.Add(addr, tmp);
             return tmp.FName;
         }
-        private static void AddProc(ulong x, MyDictionary ProcList, Dictionary<ulong, TFunc> NewSubs)
+        private static void AddProc(ulong x, MyDictionary ProcList, SortedList<ulong, TFunc> NewSubs)
         {
             if (ProcList.ContainsKey(x)) return;
             TFunc tmpfunc = new TFunc(x, 3);
@@ -95,7 +91,7 @@ namespace GNIDA
                 DTasks.Add(Tasks[0]);
                 Tasks.Remove(Tasks[0]);
                 instr1.Addr = FO2RVA(instr1.Addr);
-                lst.Add(instr1.Addr, new Stroka(this, instr1));
+                lst.Add(instr1.Addr, new Stroka(this, instr1, StartAdr));
                 switch(instr1.ins)
                 {
                     case Capstone.X86.INSN.MOVSLDUP:
@@ -140,8 +136,12 @@ namespace GNIDA
                         break;
                     case Capstone.X86.INSN.MOVBE:
                         instr1.insn.Mnemonic = "";
-                        if (instr1.OpCount == 2) instr1.insn.Operands = instr1.ops[0].ToString(AddVar) + " = " + instr1.ops[1].ToString(AddVar) + ";";//SIB
-                            else instr1.insn.Operands = instr1.ops[0].ToString(AddVar) + " = EAX;";
+                        if (instr1.OpCount == 3)
+                            instr1.insn.Operands = instr1.ops[0].ToString(AddVar) + " = " + instr1.ops[1].ToString(AddVar) + instr1.ops[2].value.imm.imm64.ToString("X2") + "];";
+                        else
+                        if (instr1.OpCount == 2) 
+                                instr1.insn.Operands = instr1.ops[0].ToString(AddVar) + " = " + instr1.ops[1].ToString(AddVar) + ";";//SIB
+                        else instr1.insn.Operands = instr1.ops[0].ToString(AddVar) + " = EAX;";
                         break;
                     case Capstone.X86.INSN.JA:
                     case Capstone.X86.INSN.JAE:
@@ -176,6 +176,8 @@ namespace GNIDA
                         {
                             instr1.insn.Operands = "Loc_" + instr1.ops[0].value.imm.imm64.ToString("X8")+";";
                             AddLabel(instr1.ops[0].value.imm.imm64);
+                            if ((!DTasks.Contains(instr1.ops[0].value.imm.imm64)) && (!Tasks.Contains(instr1.ops[0].value.imm.imm64)))
+                                Tasks.Add(instr1.ops[0].value.imm.imm64);
                         }
                         continue;// Don't disasm after it
 
@@ -217,7 +219,7 @@ namespace GNIDA
             }
             foreach (ulong Addr in LabelList)
             {
-                Stroka result;// = ;//.Find (delegate(Stroka sstr){return sstr.addr == FO2RVA(Addr);});
+                Stroka result;
                 if (lst.TryGetValue(Addr, out result))
                     result.Label = "Loc_" + result.Inst.Addr.ToString("X8");
             }
@@ -240,7 +242,6 @@ namespace GNIDA
                 RaiseLogEvent(this, i.ToString() + ". Creating a new segment " + sect.RVA.ToString("X8") + " - " + (sect.RVA + sect.VirtualSize).ToString("X8") + "... ... OK");
                 i++;
             }
-
             TFunc fnc = new TFunc(assembly.ImageBase() + assembly.Entrypoint(), 3, 0, "main");
 
             param.arch = Dasmer.ARCH_ALL;

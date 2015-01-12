@@ -62,6 +62,7 @@ namespace DBea
                         instr.ops[x].flags = instr.dt.Operands[x].Type;
                         switch (instr.dt.Operands[x].Type)
                         {
+                            case OP.INVALID: instr.ops[x].value.imm.imm64 = (ulong)instr.dt.Operands[x].Value.Mem.Disp; break;
                             case OP.IMM: instr.ops[x].value.imm.imm64 = (ulong)instr.dt.Operands[x].Value.Imm; break;
                             case OP.MEM: instr.ops[x].value.imm.imm64 = (ulong)instr.dt.Operands[x].Value.Mem.Disp; break;
                             case OP.REG: instr.ops[x].value.reg = instr.dt.Operands[x].Value.Reg; break;

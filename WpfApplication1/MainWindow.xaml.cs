@@ -65,7 +65,12 @@ namespace WpfApplication1
                 blc.Name = "c" + func.FName;
                 NameScope.GetNameScope(this).RegisterName(blc.Name, blc);
             }
-            blc.Inlines.Add(new Run("void " + func.FName + "(void){"));
+            blc.Inlines.Add(new Run("void "));
+            Run x = new Run(func.FName);
+            x.ContextMenu = mnu;
+            x.Foreground = Brushes.DarkCyan;
+            blc.Inlines.Add(x);
+            blc.Inlines.Add(new Run("(void){"));
             blc.Inlines.Add(new LineBreak());
 //            blc.Inlines.Add(new LineBreak());
             blc.Inlines.Add(new Run("}"));
@@ -86,12 +91,12 @@ namespace WpfApplication1
 
         private void AddText1(ulong addr, Stroka str, List<string> text)
         {
-            string c = "c" + baseDataSetproceduresTableAdapter.GetFuncAddr((long)addr) as string;
+            string c = "c" + baseDataSetproceduresTableAdapter.GetFuncAddr((long)str.oaddr) as string;
             if ((c == "c"))
             {                
                 BaseDataSet.proceduresRow rw = baseDataSet.procedures.NewproceduresRow();
                 rw.Addr = (uint)addr;
-                rw.Name = "Proc_" + addr.ToString("X8");
+                rw.Name = "Proc1_" + addr.ToString("X8");
                 if (baseDataSet.procedures.FindByAddr((uint)addr) == null) baseDataSet.procedures.AddproceduresRow(rw);
                 c = "c" + rw.Name;
             };
